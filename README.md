@@ -1,4 +1,4 @@
-# Muvy
+# muvy
 
 A Ruby movie barcode generator.
 
