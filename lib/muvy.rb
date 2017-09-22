@@ -1,5 +1,5 @@
 require "muvy/version"
+require "muvy/cli"
 
 module Muvy
-  # Your code goes here...
 end
