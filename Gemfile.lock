@@ -4,7 +4,6 @@ PATH
     muvy (0.1.0)
       mini_magick
       streamio-ffmpeg (~> 3.0.2)
-      thor
       youtube-dl.rb
 
 GEM
@@ -32,7 +31,6 @@ GEM
     rspec-support (3.6.0)
     streamio-ffmpeg (3.0.2)
       multi_json (~> 1.8)
-    thor (0.20.0)
     youtube-dl.rb (0.3.1.2016.09.11.1)
       cocaine (>= 0.5.4)
 
