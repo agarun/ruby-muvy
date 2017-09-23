@@ -3,6 +3,7 @@ PATH
   specs:
     muvy (0.1.0)
       mini_magick
+      slop
       streamio-ffmpeg (~> 3.0.2)
       youtube-dl.rb
 
@@ -29,6 +30,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
+    slop (4.5.0)
     streamio-ffmpeg (3.0.2)
       multi_json (~> 1.8)
     youtube-dl.rb (0.3.1.2016.09.11.1)
