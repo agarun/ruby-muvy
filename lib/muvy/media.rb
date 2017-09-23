@@ -1,39 +1,35 @@
 require 'muvy/download'
 require 'muvy/video'
 require 'muvy/errors'
+require 'uri'
 
 module Muvy
   class Media
     attr_reader :media, :options, :type
 
-    # Parameterized class method in factory class
-    def self.send
-      case type
-      when :online
-        Download.new(media, options)
-      when :local
-        Video.new(media, options)
-      end
-    end
-
     def initialize(media, options)
       @media = media
       @options = options
       get_type
+      send_type
     end
 
-    # Checks the first argument (stored in :media, access via getter).
+    # Checks the first argument (store in :media, access via getter).
     # Determines if it should be read by Download (type - online URL)
     # or by Video (type - local media).
     # Unrecognized inputs invoke the usage heredocs and banners at `CLI`
     def get_type
       if valid_url?(media)
-        @type = :online
+        @type = :Download
       elsif file_exists?(media)
-        @type = :local
+        @type = :Video
       else
         raise Muvy::Errors::InvalidMediaInput
       end
+    end
+
+    def send_type
+      Muvy.const_get(type.to_s).new(media, options)
     end
 
     private
