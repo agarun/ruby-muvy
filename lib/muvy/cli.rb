@@ -1,6 +1,6 @@
-require 'slop'
 require 'muvy/media'
 require 'muvy/errors'
+require 'slop'
 
 module Muvy
   class CLI
@@ -9,7 +9,7 @@ module Muvy
     def initialize
       parse
       handle_media
-      send_media
+      read_media
     end
 
     def parse
@@ -50,11 +50,11 @@ module Muvy
       @media = options.arguments.shift
     end
 
-    def send_media
+    def read_media
       Media.new(media, options)
-      # Media.send
     rescue Muvy::Errors::InvalidMediaInput
-      puts "Media is unrecognized. Did you forget a valid URL or file?\n\n#{options}"
+      puts "Media is unrecognized. Did you forget a valid URL or file?" +
+           "\n\n#{options}"
     end
 
     private
