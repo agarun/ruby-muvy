@@ -14,6 +14,12 @@ module Muvy
       send_type
     end
 
+    private
+
+    def send_type
+      Muvy.const_get(type.to_s).new(media, options)
+    end
+
     # Checks the first argument (store in :media, access via getter).
     # Determines if it should be read by Download (type - online URL)
     # or by Video (type - local media).
@@ -28,19 +34,14 @@ module Muvy
       end
     end
 
-    def send_type
-      Muvy.const_get(type.to_s).new(media, options)
-    end
-
-    private
-
     def file_exists?(file)
       file_path = File.absolute_path(file)
       File.file?(file_path)
     end
 
-    # TODO: Rework so it doesn't depend on http* and checks validity
-    # Accepts a string that behaves like a URL
+    # Accepts a string that behaves like a URL.
+    # The URL must have a valid URI scheme (e.g. http) to differentiate
+    # it from file paths. URI doesn't recognize #host without it.
     def valid_url?(url)
       encoded_url = URI.escape(url)
       parsed_url = URI.parse(encoded_url)
