@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["19801205+aagarunov@users.noreply.github.com"]
 
   spec.summary       = "Ruby movie barcode generator."
-  spec.homepage      = "https://github.com/aagarunov/ruby-muvy"
+  spec.homepage      = "https://github.com/agarun/ruby-muvy"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
