@@ -8,8 +8,8 @@ module Muvy
 
     def initialize
       parse
-      handle_path
       handle_media
+      handle_path
       read_media
     end
 
@@ -19,7 +19,7 @@ module Muvy
 
         o.separator ""
         o.separator "Optional adjustments:"
-        o.string  "-p", "--path", "Directory to save final images, default: pwd"
+        o.string  "-p", "--path", "Directory to save final images, default: pwd", default: nil
         o.integer "-w", "--width", "Width of the final image"
         o.integer "-h", "--height", "Height of the final image"
         o.boolean "-r", "--rotate", "Rotate final image → horizontal lines"
@@ -41,7 +41,6 @@ module Muvy
       end
     rescue Slop::Error => err
       puts <<~ERROR
-        Unrecognized input.
         Error: #{err}.
         Type `muvy -h` to see options, or visit the
         github repo for extensive usage examples.
@@ -49,10 +48,9 @@ module Muvy
     end
 
     def handle_media
-
       @media = options.arguments.shift
-      puts "No path specified, final image will be saved to #{Dir.pwd}"
-      abort "You didn't specify a URL or file." if media.nil?
+    rescue
+      exit
     end
 
     def read_media
@@ -62,10 +60,16 @@ module Muvy
            "\n\n#{options}"
     end
 
+    private
+
+    # if --path was specified but is invalid, raise an error.
+    # if --path was not specified, it will be set to the present working
+    # directory when defaults are merged with options
     def handle_path
-      # if --path doesn't exist, it should be set to PWD.
-      # display warning
-      # or... raise Muvy::Errors::InvalidPathOption
+      raise Muvy::Errors::InvalidPathOption unless File.directory?(options[:path])
+    rescue => e
+      abort "Raised #{e}: You specified a non-existent path '#{options[:path]}'"
     end
   end
 end
+# puts "No path specified, final image will be saved to #{Dir.pwd}"
