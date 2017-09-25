@@ -48,31 +48,14 @@ module Muvy
       ERROR
     end
 
+    private
+
     def handle_media
       @media = options.arguments.shift
       raise Muvy::Errors::NoMediaInput if media.nil?
     rescue => e
-      abort <<~INPUT_ERROR
-        #{e}
-        You forgot to enter a URL, file, or folder with images.
-
-        #{options}
-      INPUT_ERROR
+      abort input_error(e)
     end
-
-    def read_media
-      Media.new(media, options)
-    rescue => e
-      abort <<~MEDIA_ERROR
-        #{e}
-        Media is unrecognized.
-        The input was not a valid URL, file, or folder with images.
-
-        #{options}
-      MEDIA_ERROR
-    end
-
-    private
 
     # if --path was specified but is invalid, raise an error.
     # if --path was not specified, it will be set to the present working
@@ -81,6 +64,31 @@ module Muvy
       raise Muvy::Errors::InvalidPathOption unless File.directory?(options[:path])
     rescue => e
       abort "#{e}: You specified a non-existent path '#{options[:path]}'"
+    end
+
+    def read_media
+      Media.new(media, options)
+    rescue => e
+      abort media_error(e)
+    end
+
+    def input_error(e)
+      <<~INPUT_ERROR
+        #{e}
+        You forgot to enter a URL, file, or folder with images.
+
+        #{options}
+      INPUT_ERROR
+    end
+
+    def media_error(e)
+      <<~MEDIA_ERROR
+        #{e}
+        Media is unrecognized.
+        The input was not a valid URL, file, or folder with images.
+
+        #{options}
+      MEDIA_ERROR
     end
   end
 end
