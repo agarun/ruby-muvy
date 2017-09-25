@@ -29,9 +29,16 @@ module Muvy
         @type = :Download
       elsif file_exists?(media)
         @type = :Video
+      elsif path_exists?(media)
+        # @ type = :Image
       else
-        raise Muvy::Errors::InvalidMediaInput
+        raise Muvy::Errors::InvalidMediaInput, "You didn't specify a URL or file."
       end
+    end
+
+    def path_exists?(path)
+      full_path = File.absolute_path(path)
+      File.directory?(full_path)
     end
 
     def file_exists?(file)

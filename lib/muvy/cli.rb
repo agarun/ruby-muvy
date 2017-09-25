@@ -8,6 +8,7 @@ module Muvy
 
     def initialize
       parse
+      handle_path
       handle_media
       read_media
     end
@@ -18,7 +19,7 @@ module Muvy
 
         o.separator ""
         o.separator "Optional adjustments:"
-        o.string  "-p", "--path", "Directory to save final image, default: pwd"
+        o.string  "-p", "--path", "Directory to save final images, default: pwd"
         o.integer "-w", "--width", "Width of the final image"
         o.integer "-h", "--height", "Height of the final image"
         o.boolean "-r", "--rotate", "Rotate final image → horizontal lines"
@@ -34,6 +35,9 @@ module Muvy
           puts "muvy version #{VERSION}"
           exit
         end
+
+        o.separator ""
+        o.separator "Example:"
       end
     rescue Slop::Error => err
       puts <<~ERROR
@@ -45,9 +49,10 @@ module Muvy
     end
 
     def handle_media
-      raise Muvy::Errors::NoMediaInput if options.arguments.empty?
-      # raise Muvy::Errors::InvalidPathOption unless path_exists?(options[:path])
+
       @media = options.arguments.shift
+      puts "No path specified, final image will be saved to #{Dir.pwd}"
+      abort "You didn't specify a URL or file." if media.nil?
     end
 
     def read_media
@@ -57,14 +62,10 @@ module Muvy
            "\n\n#{options}"
     end
 
-    private
-
-    def path_exists?(path)
-      if options[:path]
-        File.directory?(path)
-      else
-        # No path was given, set to nil & announce path
-      end
+    def handle_path
+      # if --path doesn't exist, it should be set to PWD.
+      # display warning
+      # or... raise Muvy::Errors::InvalidPathOption
     end
   end
 end
