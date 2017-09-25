@@ -36,16 +36,6 @@ module Muvy
       end
     end
 
-    def path_exists?(path)
-      full_path = File.absolute_path(path)
-      File.directory?(full_path)
-    end
-
-    def file_exists?(file)
-      file_path = File.absolute_path(file)
-      File.file?(file_path)
-    end
-
     # Accepts a string that behaves like a URL.
     # The URL must have a valid URI scheme (e.g. http) to differentiate
     # it from file paths. URI doesn't recognize #host without it.
@@ -53,6 +43,16 @@ module Muvy
       encoded_url = URI.escape(url)
       parsed_url = URI.parse(encoded_url)
       !parsed_url.host.nil?
+    end
+
+    def file_exists?(file)
+      file_path = File.absolute_path(file)
+      File.file?(file_path)
+    end
+
+    def path_exists?(path)
+      full_path = File.absolute_path(path)
+      File.directory?(full_path)
     end
   end
 end
