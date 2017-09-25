@@ -1,7 +1,9 @@
 module Muvy
   module Errors
-    class InvalidMediaInput < RuntimeError; end
-
     class NoMediaInput < ArgumentError; end
+
+    class InvalidMediaInput < ArgumentError; end
+
+    class InvalidPathOption < ArgumentError; end
   end
 end

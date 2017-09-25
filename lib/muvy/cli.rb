@@ -9,7 +9,7 @@ module Muvy
     def initialize
       parse
       handle_media
-      handle_path
+      handle_path if options[:path]
       read_media
     end
 
@@ -17,9 +17,10 @@ module Muvy
       @options = Slop.parse do |o|
         o.banner = "Usage: muvy [media link or file path] [options]"
 
+        # TODO: Slop doesn't check argument types
         o.separator ""
         o.separator "Optional adjustments:"
-        o.string  "-p", "--path", "Directory to save final images, default: pwd", default: nil
+        o.string  "-p", "--path", "Directory to save final images, default: pwd"
         o.integer "-w", "--width", "Width of the final image"
         o.integer "-h", "--height", "Height of the final image"
         o.boolean "-r", "--rotate", "Rotate final image → horizontal lines"
@@ -39,9 +40,9 @@ module Muvy
         o.separator ""
         o.separator "Example:"
       end
-    rescue Slop::Error => err
-      puts <<~ERROR
-        Error: #{err}.
+    rescue Slop::Error => e
+      abort <<~ERROR
+        #{e}.
         Type `muvy -h` to see options, or visit the
         github repo for extensive usage examples.
       ERROR
@@ -49,15 +50,26 @@ module Muvy
 
     def handle_media
       @media = options.arguments.shift
-    rescue
-      exit
+      raise Muvy::Errors::NoMediaInput if media.nil?
+    rescue => e
+      abort <<~INPUT_ERROR
+        #{e}
+        You forgot to enter a URL, file, or folder with images.
+
+        #{options}
+      INPUT_ERROR
     end
 
     def read_media
       Media.new(media, options)
-    rescue Muvy::Errors::InvalidMediaInput
-      puts "Media is unrecognized. Did you forget a valid URL or file?" +
-           "\n\n#{options}"
+    rescue => e
+      abort <<~MEDIA_ERROR
+        #{e}
+        Media is unrecognized.
+        The input was not a valid URL, file, or folder with images.
+
+        #{options}
+      MEDIA_ERROR
     end
 
     private
@@ -68,8 +80,7 @@ module Muvy
     def handle_path
       raise Muvy::Errors::InvalidPathOption unless File.directory?(options[:path])
     rescue => e
-      abort "Raised #{e}: You specified a non-existent path '#{options[:path]}'"
+      abort "#{e}: You specified a non-existent path '#{options[:path]}'"
     end
   end
 end
-# puts "No path specified, final image will be saved to #{Dir.pwd}"
