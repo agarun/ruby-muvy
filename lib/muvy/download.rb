@@ -4,31 +4,33 @@ require 'youtube-dl.rb'
 
 module Muvy
   class Download
-    SETTINGS = {
-      continue: false,
-      format: :worstvideo,
-      output: "#{Dir.pwd}/tmp/ruby-muvy_video_downloads"
-    }
-
     attr_reader :media, :options
 
     def initialize(media, options = {})
       @media = media
-      @options = SETTINGS.merge(options.to_hash)
+      @options = options.to_hash
     end
 
     def run
-      # download_video
-      # send_video
-      puts "Download - test"
+      download_video
+      send_video
     end
 
     def download_video
-      YoutubeDL.download(video_url, options)
+      vid = YoutubeDL.download(media, settings)
     end
 
-    def send_video
-      #
+    def settings
+      defaults = {
+        continue: false,
+        format: :worstvideo,
+        output: options[:path] +
+                "/tmp/ruby-muvy_video_downloads/" +
+                Time.now.strftime("%d_%m_%Y_%H%M") +
+                ".mp4"
+      }
+
+      defaults.merge(options.select { |k| defaults.key?(k) })
     end
   end
 end
