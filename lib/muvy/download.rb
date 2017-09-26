@@ -18,6 +18,17 @@ module Muvy
 
     def download_video
       vid = YoutubeDL.download(media, settings)
+
+      puts <<~DOWNLOADED
+        Download complete.
+        Video title: #{vid.information[:title]}
+        Video URL: #{vid.information[:webpage_url]}
+        Video format: #{vid.information[:format]} saved as #{vid.information[:ext]}
+          as #{vid.information[:_filename]}
+        File size: #{(vid.information[:filesize] / 1.024e6).round(2)} MB.
+      DOWNLOADED
+
+      # Pass video length and FPS to options before send_video
     end
 
     def settings
