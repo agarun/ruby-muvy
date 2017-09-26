@@ -13,14 +13,15 @@ module Muvy
       read_media
     end
 
+    # NOTE: Slop doesn't check argument types
     def parse
       @options = Slop.parse do |o|
         o.banner = "Usage: muvy [media link or file path] [options]"
 
-        # TODO: Slop doesn't check argument types
         o.separator ""
         o.separator "Optional adjustments:"
-        o.string  "-p", "--path", "Directory to save final images, default: pwd"
+        o.string  "-p", "--path", "Directory to save final images, " +
+                  "\n\t\t\tDefault (PWD): #{Dir.pwd}.", default: Dir.pwd
         o.integer "-w", "--width", "Width of the final image"
         o.integer "-h", "--height", "Height of the final image"
         o.boolean "-r", "--rotate", "Rotate final image → horizontal lines"
@@ -58,8 +59,7 @@ module Muvy
     end
 
     # if --path was specified but is invalid, raise an error.
-    # if --path was not specified, it will be set to the present working
-    # directory when defaults are merged with options
+    # if --path was not specified, it will be set to the pwd
     def handle_path
       raise Muvy::Errors::InvalidPathOption unless File.directory?(options[:path])
     rescue => e
