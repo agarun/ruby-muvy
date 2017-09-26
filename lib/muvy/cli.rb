@@ -16,7 +16,7 @@ module Muvy
     # NOTE: Slop doesn't check argument types
     def parse
       @options = Slop.parse do |o|
-        o.banner = "Usage: muvy [media link or file path] [options]"
+        o.banner = "Usage: muvy [media link, file, or file path] [options]"
 
         o.separator ""
         o.separator "Optional adjustments:"
