@@ -6,7 +6,7 @@ module Muvy
   class CLI
     attr_reader :media, :options
 
-    def initialize
+    def start
       parse
       handle_media
       handle_path if options[:path]
@@ -67,7 +67,7 @@ module Muvy
     end
 
     def read_media
-      Media.new(media, options)
+      Media.new(media, options).run
     rescue => e
       abort media_error(e)
     end

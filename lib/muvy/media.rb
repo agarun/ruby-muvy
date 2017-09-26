@@ -10,6 +10,9 @@ module Muvy
     def initialize(media, options)
       @media = media
       @options = options
+    end
+
+    def run
       get_type
       send_type
     end
@@ -17,7 +20,7 @@ module Muvy
     private
 
     def send_type
-      Muvy.const_get(type.to_s).new(media, options)
+      Muvy.const_get(type.to_s).new(media, options).run
     end
 
     # Checks the first argument (store in :media, access via getter).

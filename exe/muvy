@@ -2,4 +2,4 @@
 
 require 'muvy'
 
-Muvy::CLI.new
+Muvy::CLI.new.start
