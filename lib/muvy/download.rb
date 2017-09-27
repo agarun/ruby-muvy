@@ -18,6 +18,7 @@ module Muvy
 
     def download_video
       vid = YoutubeDL.download(media, settings)
+      add_options(vid)
 
       puts <<~DOWNLOADED
         Download complete.
@@ -27,16 +28,18 @@ module Muvy
           as #{vid.information[:_filename]}
         File size: #{(vid.information[:filesize] / 1.024e6).round(2)} MB.
       DOWNLOADED
+    end
 
-      # Add important settings to @options hash for use by FFmpeg
+    # Add important settings to @options hash for use by FFmpeg
+    def add_options(vid)
       options[:fps] = vid.information[:fps]
       options[:media_length] = vid.information[:duration]
     end
 
     def send_video
       Video.new(defaults[:output], options).run if File.exists?(defaults[:output])
-    rescue
-      # things
+    rescue => err
+      puts err
     ensure
       FileUtils.remove_dir(File.dirname(defaults[:output]))
     end
