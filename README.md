@@ -2,10 +2,9 @@
 
 A Ruby movie barcode generator.
 
-## The Plan
+## Work In Progress
+------
 
-* The app handles local video files and some online media. It employs a Ruby wrapper for youtube-dl to accept video URLs and store them temporarily.
-* A Ruby FFmpeg wrapper creates thumbnails of the video at fixed intervals based on its length and frame rate.
-* A Ruby wrapper for ImageMagick is used to extract color data from each image.
-* The final images are currently generated based on the average colors of each relevant frame. I'm really eager to add a 'dominant color' option accomplished by k-means clustering, however this is a very intensive algorithm to run over an entire video file.
-* There will be a few command-line options available to adjust the final image, namely to fade colors or change the resolution.
+### Notes
+
+* The app does not use [Open3](https://apidock.com/ruby/Open3/popen3) to access FFmpeg, ImageMagick, or youtube-dl. Instead, it requires [youtube-dl.rb](https://github.com/layer8x/youtube-dl.rb) (a wrapper for [youtube-dl](https://rg3.github.io/youtube-dl/)), [streamio-ffmpeg](https://github.com/streamio/streamio-ffmpeg) (an [FFmpeg](https://www.ffmpeg.org/) wrapper), and [minimagick](https://github.com/minimagick/minimagick) (an [ImageMagick](https://www.imagemagick.org/script/index.php) wrapper).
