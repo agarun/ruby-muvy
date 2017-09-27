@@ -29,8 +29,8 @@ module Muvy
       DOWNLOADED
 
       # Add important settings to @options hash for use by FFmpeg
-      options[:fps] = vid.information.fps
-      options[:media_length] = vid.information.duration
+      options[:fps] = vid.information[:fps]
+      options[:media_length] = vid.information[:duration]
     end
 
     def send_video
