@@ -32,8 +32,9 @@ module Muvy
         @type = :Download
       elsif file_exists?(media)
         @type = :Video
-      # elsif path_exists?(media)
-      #   @ type = :Image
+      elsif path_exists?(media) # && some condition to ensure it has enough image files
+        # or: raise empty_folder_error_etc unless image_folder_valid?
+        @type = :Image
       else
         raise Muvy::Errors::InvalidMediaInput
       end
