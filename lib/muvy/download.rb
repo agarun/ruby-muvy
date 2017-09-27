@@ -28,7 +28,17 @@ module Muvy
         File size: #{(vid.information[:filesize] / 1.024e6).round(2)} MB.
       DOWNLOADED
 
-      # Pass video length and FPS to options before send_video
+      # Add important settings to @options hash for use by FFmpeg
+      options[:fps] = vid.information.fps
+      options[:media_length] = vid.information.duration
+    end
+
+    def send_video
+      # Video.new(SETTINGS[:output], SETTINGS).run if File.exists?(SETTINGS[:output])
+    rescue
+      # things
+    ensure
+      # delete the downloaded directory + videos if it didn't work failsafe
     end
 
     def settings
