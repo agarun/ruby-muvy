@@ -50,7 +50,7 @@ module Muvy
         format: :worstvideo,
         output: options[:path] +
                 "/tmp/ruby-muvy_video_downloads/" +
-                Time.now.strftime("%d_%m_%Y_%H%M") +
+                Time.now.strftime("%d_%m_%Y_%H%M%S") +
                 ".mp4"
       }
 
