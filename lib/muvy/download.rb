@@ -4,7 +4,7 @@ require 'youtube-dl.rb'
 
 module Muvy
   class Download
-    attr_reader :media, :options
+    attr_reader :media, :options, :defaults
 
     def initialize(media, options = {})
       @media = media
@@ -34,15 +34,15 @@ module Muvy
     end
 
     def send_video
-      # Video.new(SETTINGS[:output], SETTINGS).run if File.exists?(SETTINGS[:output])
+      Video.new(defaults[:output], options).run if File.exists?(defaults[:output])
     rescue
       # things
     ensure
-      # delete the downloaded directory + videos if it didn't work failsafe
+      FileUtils.remove_dir(File.dirname(defaults[:output]))
     end
 
     def settings
-      defaults = {
+      @defaults = {
         continue: false,
         format: :worstvideo,
         output: options[:path] +
