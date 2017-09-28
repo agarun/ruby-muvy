@@ -4,11 +4,12 @@ require 'youtube-dl.rb'
 
 module Muvy
   class Download
-    attr_reader :media, :options, :defaults
+    attr_reader :media, :options, :settings
 
     def initialize(media, options = {})
       @media = media
       @options = options.to_hash
+      @settings = merge_settings
     end
 
     def run
@@ -37,15 +38,18 @@ module Muvy
     end
 
     def send_video
-      Video.new(defaults[:output], options).run if File.exists?(defaults[:output])
+      Video.new(settings[:output], options).run if File.exists?(settings[:output])
     rescue => err
       puts err
     ensure
-      FileUtils.remove_dir(File.dirname(defaults[:output]))
+      FileUtils.remove_dir(File.dirname(settings[:output]))
     end
 
-    def settings
-      @defaults = {
+    # defaults holds default values
+    # options holds command-line arguments
+    # settings merges defaults with options where appropriate
+    def merge_settings
+      defaults = {
         continue: false,
         format: :worstvideo,
         output: options[:path] +
@@ -54,7 +58,7 @@ module Muvy
                 ".mp4"
       }
 
-      defaults.merge(options.select { |k| defaults.key?(k) })
+      @settings = defaults.merge!(options.select { |k| defaults.key?(k) })
     end
   end
 end
