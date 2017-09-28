@@ -35,13 +35,13 @@ module Muvy
     def add_options(vid)
       options[:fps] = vid.information[:fps]
       options[:media_length] = vid.information[:duration]
-      options[:path] += "/tmp/ruby-muvy_video_downloads/"
+      options[:tmp_path] = options[:path] + "/tmp/muvy_video/"
     end
 
     def send_video
       Video.new(settings[:output], options).run if File.exists?(settings[:output])
-    rescue => err
-      puts err
+    rescue => e
+      puts e
     ensure
       FileUtils.remove_dir(File.dirname(settings[:output]))
     end
