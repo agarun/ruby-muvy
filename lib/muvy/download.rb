@@ -35,6 +35,7 @@ module Muvy
     def add_options(vid)
       options[:fps] = vid.information[:fps]
       options[:media_length] = vid.information[:duration]
+      options[:path] += "/tmp/ruby-muvy_video_downloads/"
     end
 
     def send_video
