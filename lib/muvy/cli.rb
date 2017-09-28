@@ -21,7 +21,9 @@ module Muvy
         o.separator ""
         o.separator "Optional adjustments:"
         o.string  "-p", "--path", "Directory to save final images, " +
-                  "\n\t\t\tDefault (PWD): #{Dir.pwd}.", default: Dir.pwd
+                  "\n\t\t\tDefault (PWD): #{Dir.pwd}", default: Dir.pwd
+        o.string  "-s", "--style", "Choose image style: solid, stretch " +
+                  "spotmap (TODO). Default: solid", default: solid
         o.integer "-w", "--width", "Width of the final image"
         o.integer "-h", "--height", "Height of the final image"
         o.boolean "-r", "--rotate", "Rotate final image → horizontal lines"
