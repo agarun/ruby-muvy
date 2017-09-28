@@ -14,4 +14,4 @@ A Ruby movie barcode generator.
 - [ ] Horizontal & vertical lines output
 - [ ] Spotmap output ('QR')
 - [ ] Carpet output
-- [ ] Dominant color algorithm (k-means clustering)
+- [ ] Dominant color algorithms (k-means clustering)
