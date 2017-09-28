@@ -52,9 +52,9 @@ module Muvy
     def merge_settings
       defaults = {
         continue: false,
-        format: :worstvideo,
+        format: 135,
         output: options[:path] +
-                "/tmp/ruby-muvy_video_downloads/" +
+                "/tmp/muvy_video/" +
                 Time.now.strftime("%d_%m_%Y_%H%M%S") +
                 ".mp4"
       }
