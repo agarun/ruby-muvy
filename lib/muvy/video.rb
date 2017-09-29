@@ -13,7 +13,7 @@ module Muvy
     def run
       @vid = FFMPEG::Movie.new(media)
       thumbs
-      # send_thumbs
+      send_thumbs
     end
 
     # defaults holds default values
@@ -22,8 +22,8 @@ module Muvy
     def merge_settings
       defaults = {
         vframes: options[:fps] * options[:media_length],
-        frame_rate: options[:fps] / Math.sqrt(options[:media_length]),
-        custom: %W[scale=1:#{options[:style] == 'stretch' ? 480 : 1}]
+        frame_rate: options[:fps] / (options[:media_length]**(1 / 1.91)),
+        custom: %W[-vf scale=1:#{options[:style] == 'stretch' ? 480 : 1}]
       }
 
       @settings = defaults.merge!(options.select { |k| defaults.key?(k) })
@@ -38,7 +38,9 @@ module Muvy
     end
 
     def send_thumbs
-      Image.new()
+      puts "x"
+      Image.new(options[:tmp_path], options).run
+      puts "y"
     ensure
       FileUtils.remove_dir(File.dirname(options[:tmp_path]))
     end
