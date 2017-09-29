@@ -24,17 +24,16 @@ module Muvy
     end
 
     # Checks the first argument (store in :media, access via getter).
-    # Determines if it should be read by Download (type - online URL)
-    # or by Video (type - local media).
+    # Determines if it should be read by Download (type - online URL),
+    # by Video (type - local media), or by Image (type - local image files).
     # Unrecognized inputs invoke the usage heredocs and banners at `CLI`
     def get_type
       if valid_url?(media)
         @type = :Download
       elsif file_exists?(media)
         @type = :Video
-      elsif path_exists?(media) # && some condition to ensure it has enough image files
-        # or: raise empty_folder_error_etc unless image_folder_valid?
-        @type = :Image
+      elsif path_exists?(media) && image_folder?(media)
+        @type = :Image # Not yet implemented.
       else
         raise Muvy::Errors::InvalidMediaInput
       end
@@ -57,6 +56,10 @@ module Muvy
     def path_exists?(path)
       full_path = File.absolute_path(path)
       File.directory?(full_path)
+    end
+
+    def image_folder?(path)
+      false
     end
   end
 end
