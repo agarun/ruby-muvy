@@ -1,4 +1,5 @@
 require 'streamio-ffmpeg'
+require 'muvy/image'
 
 module Muvy
   class Video
@@ -31,7 +32,7 @@ module Muvy
 
     def thumbs
       vid.screenshot(
-        "#{options[:tmp_path]}thumb%d.png",
+        "#{options[:tmp_path]}thumb%06d.png",
         settings,
         validate: false
       )
