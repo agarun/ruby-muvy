@@ -13,7 +13,6 @@ module Muvy
       read_media
     end
 
-    # NOTE: Slop doesn't check argument types
     def parse
       @options = Slop.parse do |o|
         o.banner = "Usage: muvy [media link, file, or file path] [options]"
@@ -21,27 +20,23 @@ module Muvy
         o.separator ""
         o.separator "Optional adjustments:"
         o.string  "-p", "--path", "Directory to save final images, " +
-                  "\n\t\t\tDefault (PWD): #{Dir.pwd}", default: Dir.pwd
+                  "\n\t\t\tDefault: your pwd → #{Dir.pwd}",
+                  default: Dir.pwd
         o.string  "-s", "--style", "Choose image style: solid, stretch " +
-                  "spotmap (TODO). Default: solid", default: "solid"
-        o.integer "-w", "--width", "Width of the final image"
+                  "\n\t\t\tDefault: solid",
+                  default: "solid"
         o.integer "-h", "--height", "Height of the final image"
         o.boolean "-r", "--rotate", "Rotate final image → horizontal lines"
 
         o.separator ""
         o.separator "More:"
         o.on "--help", "Shows this usage page" do
-          puts o
-          exit
+          abort o.to_s
         end
 
         o.on "-v", "--version", "Displays the version" do
-          puts "muvy version #{VERSION}"
-          exit
+          abort "muvy version #{VERSION}"
         end
-
-        o.separator ""
-        o.separator "Example:"
       end
     rescue Slop::Error => e
       abort <<~ERROR
@@ -60,18 +55,18 @@ module Muvy
       abort input_error(e)
     end
 
-    # if --path was specified but is invalid, raise an error.
-    # if --path was not specified, it will be set to the pwd
-    def handle_path
-      raise Muvy::Errors::InvalidPathOption unless File.directory?(options[:path])
-    rescue => e
-      abort "#{e}: You specified a non-existent path '#{options[:path]}'"
-    end
-
     def read_media
       Media.new(media, options).run
     rescue => e
       abort media_error(e)
+    end
+
+    # if --path was specified but is invalid, raise an error.
+    # if --path was not specified, it will be set to the pwd.
+    def handle_path
+      raise Muvy::Errors::InvalidPathOption unless File.directory?(options[:path])
+    rescue => e
+      abort "#{e}: You specified a non-existent path '#{options[:path]}'"
     end
 
     def input_error(e)
