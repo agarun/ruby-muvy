@@ -19,22 +19,24 @@ module Muvy
 
         o.separator ""
         o.separator "Optional adjustments:"
-        o.string  "-p", "--path", "Directory to save final images, " +
+        o.string  "-p", "-path", "Directory to save final images, " +
                   "\n\t\t\tDefault: your pwd → #{Dir.pwd}",
                   default: Dir.pwd
-        o.string  "-s", "--style", "Choose image style: solid, stretch " +
+        o.string  "-s", "-style", "Choose image style: solid, stretch " +
                   "\n\t\t\tDefault: solid",
                   default: "solid"
-        o.integer "-h", "--height", "Height of the final image"
-        o.boolean "-r", "--rotate", "Rotate final image → horizontal lines"
+        o.boolean "-r", "-rotate", "Rotate final image → horizontal lines"
+        o.integer "-h", "-height", "Height of the final image"
+        o.string "-start", "Custom video start time, if applicable."
+        o.string "-end", "Custom video end time, if applicable."
 
         o.separator ""
         o.separator "More:"
-        o.on "--help", "Shows this usage page" do
+        o.on "-help", "Shows this usage page" do
           abort o.to_s
         end
 
-        o.on "-v", "--version", "Displays the version" do
+        o.on "-v", "-version", "Displays the version" do
           abort "muvy version #{VERSION}"
         end
       end
@@ -61,8 +63,8 @@ module Muvy
       abort media_error(e)
     end
 
-    # if --path was specified but is invalid, raise an error.
-    # if --path was not specified, it will be set to the pwd.
+    # if -path was specified but is invalid, raise an error.
+    # if -path was not specified, it will be set to the pwd.
     def handle_path
       raise Muvy::Errors::InvalidPathOption unless File.directory?(options[:path])
     rescue => e
