@@ -35,7 +35,7 @@ module Muvy
     def add_options(vid)
       options[:fps] = vid.information[:fps]
       options[:media_length] = vid.information[:duration]
-      options[:tmp_path] = options[:path] + "/tmp/muvy_video/"
+      options[:tmp_path] = File.absolute_path(options[:path]) + "/tmp/muvy_video/"
     end
 
     def send_video
@@ -43,7 +43,7 @@ module Muvy
     rescue => e
       puts e
     ensure
-      FileUtils.remove_dir(File.dirname(settings[:output]))
+      # FileUtils.remove_dir(File.dirname(settings[:output]))
     end
 
     # defaults holds default values
@@ -53,9 +53,9 @@ module Muvy
       defaults = {
         continue: false,
         format: 135,
-        output: options[:path] +
+        output: File.absolute_path(options[:path]) +
                 "/tmp/muvy_video/" +
-                Time.now.strftime("%d_%m_%Y_%H%M%S") +
+                Time.now.strftime("%d-%m-%Y-%H%M%S") +
                 ".mp4"
       }
 
