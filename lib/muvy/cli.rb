@@ -26,7 +26,8 @@ module Muvy
                   "\n\t\t\tDefault: solid",
                   default: "solid"
         o.boolean "-r", "-rotate", "Rotate final image → horizontal lines"
-        o.integer "-h", "-height", "Height of the final image"
+        o.integer "-h", "-height", "Height of the final image (solid style)",
+                  default: 720
         o.string "-start", "Custom video start time, if applicable."
         o.string "-end", "Custom video end time, if applicable."
 
