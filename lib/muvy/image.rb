@@ -11,7 +11,7 @@ module Muvy
 
     def run
       montage
-      resize if options[:style] == "solid"
+      resize
     end
 
     def montage
@@ -31,13 +31,6 @@ module Muvy
     def resize
       img = MiniMagick::Image.new(options[:img])
       img.resize "#{img.width}x#{options[:height]}!"
-    end
-
-    def dominant_colors
-      # Colors class
-      # must generate full thumbnails in custom: %w() if -dominant is chosen
-      # then extract all the colors, and calculate via algorithms
-      # pixels = image.get_pixels
     end
   end
 end
