@@ -10,6 +10,7 @@ module Muvy
       parse
       handle_media
       handle_path
+      convert_options
       read_media
     end
 
@@ -43,7 +44,7 @@ module Muvy
 
         o.string "-frame_rate", "Set a custom frame rate. Be extremely " +
                  "careful!\n\t\t\s\sSetting this to a high number might cause hundreds of " +
-                 "thousands of images to be generated.\n\t\t\s\s" +
+                 "thousands of images to be generated in your local temp files.\n\t\t\s\s" +
                  "See online docs for examples of reasonable numbers."
       end
     rescue Slop::Error => e
@@ -63,18 +64,30 @@ module Muvy
       abort input_error(e)
     end
 
-    def read_media
-      Media.new(media, options).run
-    rescue => e
-      abort media_error(e)
-    end
-
     # if -path was specified but is invalid, raise an error
     # if -path was not specified, it was set to the pwd by Slop defaults
     def handle_path
       raise Muvy::Errors::InvalidPathOption unless File.directory?(options[:path])
     rescue => e
       abort "#{e}: You specified a non-existent path '#{options[:path]}'"
+    end
+
+    # FileUtils.remove_entry_secure is called before ::mktmpdir returns
+    def read_media
+      Dir.mktmpdir do |tmp_dir|
+        options[:tmp_dir] = tmp_dir
+        puts "Using #{tmp_dir} to store jobs locally..."
+
+        Media.new(media, options).run
+      end
+    rescue => e
+      abort media_error(e)
+    ensure
+      puts "#{options[:tmp_dir]} was erased." if options[:tmp_dir]
+    end
+
+    def convert_options
+      @options = options.to_hash # finalize
     end
 
     def input_error(e)

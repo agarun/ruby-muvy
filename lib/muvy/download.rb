@@ -8,7 +8,7 @@ module Muvy
 
     def initialize(media, options = {})
       @media = media
-      @options = options.to_hash
+      @options = options
       @settings = merge_settings
     end
 
@@ -35,15 +35,12 @@ module Muvy
     def add_options(vid)
       options[:fps] = vid.information[:fps]
       options[:media_length] = vid.information[:duration]
-      options[:tmp_path] = File.absolute_path(options[:path]) + "/tmp/muvy_video/"
     end
 
     def send_video
       Video.new(settings[:output], options).run if File.exists?(settings[:output])
     rescue => e
       puts e
-    ensure
-      # FileUtils.remove_dir(File.dirname(settings[:output]))
     end
 
     # defaults holds default values
@@ -53,13 +50,12 @@ module Muvy
       defaults = {
         continue: false,
         format: 135,
-        output: File.absolute_path(options[:path]) +
-                "/tmp/muvy_video/" +
+        output: options[:tmp_dir] +
                 Time.now.strftime("%d-%m-%Y-%H%M%S") +
                 ".mp4"
       }
 
-      @settings = defaults.merge!(options.select { |k| defaults.key?(k) })
+      @settings = defaults.merge!(options.select { |k, v| defaults.key?(k) && v })
     end
   end
 end
