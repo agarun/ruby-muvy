@@ -3,6 +3,8 @@ require 'muvy/image'
 
 module Muvy
   class Video
+    # TODO: Add constant to replace 480 as `NATIVE_HEIGHT`
+
     attr_reader :media, :options, :settings, :vid
 
     def initialize(media, options = {})
@@ -11,6 +13,7 @@ module Muvy
       @settings = merge_settings
     end
 
+    # TODO: Clean this up.
     def run
       @vid = FFMPEG::Movie.new(media)
       thumbs
@@ -31,21 +34,19 @@ module Muvy
         }
       }
 
-      @settings = defaults.merge!(options.select { |k| defaults.key?(k) })
+      @settings = defaults.merge!(options.select { |k, v| defaults.key?(k) && v })
     end
 
     def thumbs
       vid.screenshot(
-        "#{options[:tmp_path]}thumb%06d.png",
+        "#{options[:tmp_dir]}/thumb%06d.png",
         settings,
         validate: false
       )
     end
 
     def send_thumbs
-      Image.new(options[:tmp_path], options).run
-    ensure
-      FileUtils.remove_dir(File.dirname(options[:tmp_path]))
+      Image.new(options[:tmp_dir], options).run
     end
   end
 end

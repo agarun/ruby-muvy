@@ -41,7 +41,7 @@ module Muvy
 
     # Accepts a string that behaves like a URL.
     # The URL must have a valid URI scheme (e.g. http) to differentiate
-    # it from file paths. URI doesn't recognize #host without it.
+    # it from file paths. URI module doesn't recognize #host without it.
     def valid_url?(url)
       encoded_url = URI.escape(url)
       parsed_url = URI.parse(encoded_url)
