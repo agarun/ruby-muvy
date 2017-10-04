@@ -9,7 +9,7 @@ module Muvy
     def start
       parse
       handle_media
-      handle_path if options[:path]
+      handle_path
       read_media
     end
 
@@ -69,8 +69,8 @@ module Muvy
       abort media_error(e)
     end
 
-    # if -path was specified but is invalid, raise an error.
-    # if -path was not specified, it will be set to the pwd.
+    # if -path was specified but is invalid, raise an error
+    # if -path was not specified, it was set to the pwd by Slop defaults
     def handle_path
       raise Muvy::Errors::InvalidPathOption unless File.directory?(options[:path])
     rescue => e
