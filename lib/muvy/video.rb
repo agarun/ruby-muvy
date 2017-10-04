@@ -23,7 +23,7 @@ module Muvy
     def merge_settings
       defaults = {
         vframes: options[:fps] * options[:media_length],
-        frame_rate: options[:fps] / (options[:media_length]**(1 / 1.91)),
+        frame_rate: options[:fps] / (options[:media_length]**(1 / 1.99)),
         custom: %W{
           -vf scale=1:#{options[:style] == 'stretch' ? 480 : 1}
           -ss #{options[:start] ? options[:start] : 0}

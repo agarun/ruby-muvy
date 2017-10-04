@@ -26,8 +26,8 @@ module Muvy
                   "\n\t\t\tDefault: solid",
                   default: "solid"
         o.boolean "-r", "-rotate", "Rotate final image → horizontal lines"
-        o.integer "-h", "-height", "Height of the final image (solid style)",
-                  default: 720
+        o.integer "-h", "-height", "Custom height of the final image",
+                  default: 640
         o.string "-start", "Custom video start time, if applicable."
         o.string "-end", "Custom video end time, if applicable."
 
@@ -40,6 +40,11 @@ module Muvy
         o.on "-v", "-version", "Displays the version" do
           abort "muvy version #{VERSION}"
         end
+
+        o.string "-frame_rate", "Set a custom frame rate. Be extremely " +
+                 "careful!\n\t\t\s\sSetting this to a high number might cause hundreds of " +
+                 "thousands of images to be generated.\n\t\t\s\s" +
+                 "See online docs for examples of reasonable numbers."
       end
     rescue Slop::Error => e
       abort <<~ERROR
