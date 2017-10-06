@@ -20,37 +20,39 @@ module Muvy
 
         o.separator ""
         o.separator "Optional adjustments:"
-        o.string  "-p", "-path", "Directory to save final images, " +
+        o.string  "-p", "--path", "Directory to save final images, " +
                   "\n\t\t\tDefault: your pwd → #{Dir.pwd}",
                   default: Dir.pwd
-        o.string  "-s", "-style", "Choose image style: solid, stretch " +
+        o.string  "-s", "--style", "Choose image style: solid, stretch " +
                   "\n\t\t\tDefault: solid",
                   default: "solid"
-        o.boolean "-r", "-rotate", "Rotate final image → horizontal lines"
-        o.integer "-h", "-height", "Custom height of the final image",
+        o.boolean "-r", "--rotate", "Image will have horizontal lines"
+        o.integer "-h", "--height", "Custom height of the final image",
                   default: 640
-        o.string "-start", "Custom video start time, if applicable."
-        o.string "-end", "Custom video end time, if applicable."
+        o.string "--start", "Custom video start time"
+        o.string "--end", "Custom video end time"
+        o.string "--format", "Force youtube-dl to use a specific video quality"
+        o.string "--frame_rate", <<~FPS
+          Set a custom frame rate. Be careful!
+          \t\t\s\s\sSetting this to a high number might cause hundreds of
+          \t\t\s\s\sthousands of images to be generated in your sytem's temp dir.
+          \t\t\s\s\sThe specific frame_rate used by default for your file is printed
+          \t\t\s\s\safter generation. You can use that number to make a reasonable change.
+        FPS
 
-        o.separator ""
         o.separator "More:"
-        o.on "-help", "Shows this usage page" do
+        o.on "--help", "Shows this usage page" do
           abort o.to_s
         end
 
-        o.on "-v", "-version", "Displays the version" do
+        o.on "-v", "--version", "Displays the version" do
           abort "muvy version #{VERSION}"
         end
-
-        o.string "-frame_rate", "Set a custom frame rate. Be extremely " +
-                 "careful!\n\t\t\s\sSetting this to a high number might cause hundreds of " +
-                 "thousands of images to be generated in your local temp files.\n\t\t\s\s" +
-                 "See online docs for examples of reasonable numbers."
       end
     rescue Slop::Error => e
       abort <<~ERROR
         #{e}.
-        Type `muvy -h` to see options, or visit the
+        Type `muvy --help` to see options, or visit the
         github repo for extensive usage examples.
       ERROR
     end
