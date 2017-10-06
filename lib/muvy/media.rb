@@ -1,5 +1,6 @@
 require 'muvy/download'
 require 'muvy/video'
+require 'muvy/imagefolder'
 require 'muvy/errors'
 require 'uri'
 
@@ -32,8 +33,8 @@ module Muvy
         @type = :Download
       elsif file_exists?(media)
         @type = :Video
-      elsif path_exists?(media) && image_folder?(media)
-        @type = :Image # Not yet implemented.
+      elsif path_exists?(media)
+        @type = :ImageFolder
       else
         raise Muvy::Errors::InvalidMediaInput
       end
@@ -56,10 +57,6 @@ module Muvy
     def path_exists?(path)
       full_path = File.absolute_path(path)
       File.directory?(full_path)
-    end
-
-    def image_folder?(path)
-      false
     end
   end
 end
