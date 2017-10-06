@@ -3,32 +3,39 @@ require 'muvy/image'
 
 module Muvy
   class Video
-    # TODO: Add constant to replace 480 as `NATIVE_HEIGHT`
-
     attr_reader :media, :options, :settings, :vid
 
     def initialize(media, options = {})
       @media = media
+      @vid = FFMPEG::Movie.new(media)
       @options = options
       @settings = merge_settings
     end
 
-    # TODO: Clean this up.
     def run
-      @vid = FFMPEG::Movie.new(media)
       thumbs
       send_thumbs
+    end
+
+    private
+
+    # Add important settings to @options hash for use by FFmpeg
+    def add_options
+      options[:fps] = vid.frame_rate
+      options[:media_length] = vid.duration
     end
 
     # defaults holds default values
     # options holds command-line arguments
     # settings merges defaults with options where appropriate
     def merge_settings
+      add_options
+
       defaults = {
         vframes: options[:fps] * options[:media_length],
         frame_rate: options[:fps] / (options[:media_length]**(1 / 1.99)),
         custom: %W{
-          -vf scale=1:#{options[:style] == 'stretch' ? 480 : 1}
+          -vf scale=1:#{options[:style] == 'stretch' ? vid.height : 1}
           -ss #{options[:start] ? options[:start] : 0}
           -to #{options[:end] ? options[:end] : options[:media_length]}
         }
