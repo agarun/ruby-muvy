@@ -27,8 +27,7 @@ module Muvy
                   "\n\t\t\tDefault: solid",
                   default: "solid"
         o.boolean "-r", "--rotate", "Image will have horizontal lines"
-        o.integer "-h", "--height", "Custom height of the final image",
-                  default: 640
+        o.integer "-h", "--height", "Custom height of the final image"
         o.string "--start", "Custom video start time"
         o.string "--end", "Custom video end time"
         o.string "--format", "Force youtube-dl to use a specific video quality"

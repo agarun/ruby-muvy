@@ -33,11 +33,13 @@ module Muvy
     end
 
     # TODO: Shouldn't make a default for height but instead depend on vid data
-    # TODO: equivalently --> make an option to override youtube-dl default
+    # TODO: equivalently --> make an option to override youtube-dl default qual
     # TODO: Refactor helper functions into classes
     def resize
-      img = MiniMagick::Image.new(options[:img])
-      img.resize "#{img.width}x#{options[:height]}!"
+      if options[:height]
+        img = MiniMagick::Image.new(options[:img])
+        img.resize "#{img.width}x#{options[:height]}!"
+      end
     end
 
     def rotate
@@ -48,6 +50,7 @@ module Muvy
     end
 
     def printout
+      # add image width & height
       puts "Saved to #{options[:img]}."
       puts <<~PRINTOUT if options[:fps]
 
