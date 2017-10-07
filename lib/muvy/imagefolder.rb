@@ -27,13 +27,25 @@ module Muvy
 
       photos.each_with_index do |photo, i|
         MiniMagick::Tool::Convert.new do |convert|
-          p photo
           convert << photo
-          # TODO: Not currently supporting `stretch` style (1x1 is solid)
-          # TODO: Will have to fix the height smartly.
-          convert.resize("1x1")
+          convert.resize("1x#{height}!")
           convert << "#{options[:tmp_dir]}/muvy-img-folder/thumb#{i.to_s.rjust(6, '0')}.png"
         end
+      end
+    end
+
+    def height
+      if options[:style] == "stretch"
+        options[:height] ? options[:height] : (abort <<~NO_HEIGHT)
+          You specified an image folder and 'stretch' with the --style flag.
+          You should also specify a uniform height with the --height option.
+        NO_HEIGHT
+      else
+        # Arbitrary default height 720
+        options[:height] ||= 720
+
+        # 1x1 to get average colors ('solid' style)
+        1
       end
     end
 
