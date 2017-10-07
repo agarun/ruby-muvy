@@ -7,12 +7,13 @@ module Muvy
 
     def initialize(media, options = {})
       @media = media
-      @vid = FFMPEG::Movie.new(media)
       @options = options
-      @settings = merge_settings
     end
 
     def run
+      @vid = FFMPEG::Movie.new(media)
+      @settings = merge_settings
+
       thumbs
       send_thumbs
     end
@@ -27,7 +28,7 @@ module Muvy
 
     # defaults holds default values
     # options holds command-line arguments
-    # settings merges defaults with options where appropriate
+    # settings merges defaults with options where appropriate 
     def merge_settings
       add_options
 

@@ -9,13 +9,16 @@ module Muvy
     def initialize(media, options = {})
       @media = media
       @options = options
-      @settings = merge_settings
     end
 
     def run
+      @settings = merge_settings
+
       download_video
       send_video
     end
+
+    private
 
     def download_video
       vid = YoutubeDL.download(media, settings)
