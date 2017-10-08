@@ -28,7 +28,7 @@ module Muvy
 
     # defaults holds default values
     # options holds command-line arguments
-    # settings merges defaults with options where appropriate 
+    # settings merges defaults with options where appropriate
     def merge_settings
       add_options
 

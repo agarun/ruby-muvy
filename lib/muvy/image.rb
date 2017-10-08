@@ -32,13 +32,12 @@ module Muvy
       end
     end
 
-    # TODO: Shouldn't make a default for height but instead depend on vid data
-    # TODO: equivalently --> make an option to override youtube-dl default qual
+    # Arbitrary default height 720
     # TODO: Refactor helper functions into classes
     def resize
-      if options[:height]
+      unless options[:style] == "stretch"
         img = MiniMagick::Image.new(options[:img])
-        img.resize "#{img.width}x#{options[:height]}!"
+        img.resize "#{img.width}x#{options[:height] ||= 720}!"
       end
     end
 
