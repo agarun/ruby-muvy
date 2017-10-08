@@ -20,7 +20,7 @@ module Muvy
 
     def montage
       MiniMagick::Tool::Montage.new do |montage|
-        montage << (media + "/thumb*.png")
+        montage << "#{media}/thumb*.png"
         montage.mode("Concatenate")
         montage.tile("x1")
         options[:img] =
@@ -33,7 +33,6 @@ module Muvy
     end
 
     # Arbitrary default height 720
-    # TODO: Refactor helper functions into classes
     def resize
       unless options[:style] == "stretch"
         img = MiniMagick::Image.new(options[:img])
@@ -61,3 +60,4 @@ module Muvy
     end
   end
 end
+# TODO: Refactor helper functions into classes

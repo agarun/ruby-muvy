@@ -53,7 +53,7 @@ module Muvy
       defaults = {
         continue: false,
         format: 135,
-        output: options[:tmp_dir] +
+        output: "#{options[:tmp_dir]}/" +
                 Time.now.strftime("%d-%m-%Y-%H%M%S") +
                 ".mp4"
       }

@@ -33,7 +33,7 @@ module Muvy
       add_options
 
       defaults = {
-        vframes: options[:fps] * options[:media_length],
+        vframes: (options[:fps] * options[:media_length]).floor,
         frame_rate: options[:fps] / (options[:media_length]**(1 / 1.99)),
         custom: %W{
           -vf scale=1:#{options[:style] == 'stretch' ? vid.height : 1}
