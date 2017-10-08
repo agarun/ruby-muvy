@@ -34,9 +34,12 @@ module Muvy
 
     # Arbitrary default height 720
     def resize
-      unless options[:style] == "stretch"
-        img = MiniMagick::Image.new(options[:img])
+      img = MiniMagick::Image.new(options[:img])
+
+      if options[:style] != "stretch"
         img.resize "#{img.width}x#{options[:height] ||= 720}!"
+      elsif options[:height] # and style is stretch
+        img.resize "#{img.width}x#{options[:height]}!"
       end
     end
 
@@ -48,7 +51,7 @@ module Muvy
     end
 
     def printout
-      # add image width & height
+      # TODO: add image width & height
       puts "Saved to #{options[:img]}."
       puts <<~PRINTOUT if options[:fps]
 
@@ -60,4 +63,3 @@ module Muvy
     end
   end
 end
-# TODO: Refactor helper functions into classes

@@ -1,6 +1,6 @@
 ![muvy-header](https://i.imgur.com/Akc3Fh9.png)
 
-**muvy** is a simple Ruby movie barcode generator. Videos go in, crispy images come out.  
+**muvy** is a simple Ruby movie barcode generator.  
 You can feed it a youtube video, phone gallery, or any locally stored video files. It pulls most of the frames out, moves around the colors, and throws them back together in a neat montage.
 
 ------
@@ -75,9 +75,10 @@ Optionally specify a custom height for the output image.
 
 #### `--format`
 Optionally force the download quality for `youtube-dl`.  
-This determines the height of your image only if you didn't specify --height.  
+This determines the height of your image when using `-s stretch` only if you didn't specify --height.  
 **Default**: 135 *(854x480 DASH at 24fps)*  
-[Youtube-dl docs on format selection](https://github.com/rg3/youtube-dl/blob/master/README.md#format-selection).
+
+See [youtube-dl docs on format selection](https://github.com/rg3/youtube-dl/blob/master/README.md#format-selection).
 
 #### `--frame_rate`
 Optionally specify the amount of frames to extract per second from the media.  
