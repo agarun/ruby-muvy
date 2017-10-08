@@ -1,7 +1,7 @@
 ![muvy-header](https://i.imgur.com/Akc3Fh9.png)
 
 **muvy** is a simple Ruby movie barcode generator. Videos go in, crispy images come out.  
-You can feed it a youtube video, phone gallery, or any locally stored video files. It pulls most of the frames out, moves around the colors, and throws them all back together.
+You can feed it a youtube video, phone gallery, or any locally stored video files. It pulls most of the frames out, moves around the colors, and throws them back together in a neat montage.
 
 ------
 * [Install](#install)
@@ -67,21 +67,35 @@ Optionally specify currently supported styles: [solid](link) or [stretch](link).
 #### `--rotate`
 Pass `--rotate` to rotate the final image 90 degrees, i.e. to draw horizontal lines,
 where the top is the 'start' of your media file.  
-[Two examples](link).
+
+[Two examples](link)
 
 #### `-h, --height`
-... no default hopefully ...
+Optionally specify a custom height for the output image.
+
+#### `--format`
+Optionally force the download quality for `youtube-dl`.  
+This determines the height of your image only if you didn't specify --height.  
+**Default**: 135 *(854x480 DASH at 24fps)*  
+[Youtube-dl docs on format selection](https://github.com/rg3/youtube-dl/blob/master/README.md#format-selection).
 
 #### `--frame_rate`
 Optionally specify the amount of frames to extract per second from the media.  
 This determines the width of the image.  
-You should run `muvy` without this option once and check the stats printout
-to get an idea of a better number.
+
+You should run `muvy [..]` without this option once and check the stats printout
+to get an idea of a better number.  
+For example, if the stats printout used "1.6 fps," passing `--frame_rate 3.2`
+would double the amount of frames, lines, and subsequently the width.
+
+> Setting this to an unreasonable number might cause hundreds of thousands
+of files to be temporarily created in your system's temp files!
 
 #### `--start` and `--end`
 Optionally specify starting and ending times for processing videos.  
-Example:
-* KOSAKSOKASKSOK
+If you only specify one of them, the other will default to the start/end.
+
+[Examples](link)
 
 ### Features
 - [x] Accepting image galleries, local videos, and online videos
@@ -100,6 +114,7 @@ Example:
 - [ ] Colorspace adjustments
 - [ ] Accept music files
  - [ ] Generate audio waveforms
+ - [ ] Randomize waveform colors
 - [ ] Presets
 
 ## Examples
