@@ -12,6 +12,7 @@ You can feed it a youtube video, phone gallery, or any locally stored video file
   * [Options](#options)
   * [Features](#features)
 * [Examples](#examples)
+* [Links](#links)
 ------
 
 ## Install
@@ -50,7 +51,7 @@ $ gem install muvy
 | Type   | Command: `muvy [Type] [Options]`                                    | Support                                                                                       |
 |--------|--------------------------------------------|-----------------------------------------------------------------------------------------------|
 | URL    | `muvy https://someVideoSite.com/someVidID` | [youtube-dl supported sites](https://rg3.github.io/youtube-dl/supportedsites.html) |
-| Local  | `muvy /Documents/Video-Backup-3/movie.mp4`  | [FFmpeg supported formats](https://www.ffmpeg.org/general.html#File-Formats)                                                      |
+| Local  | `muvy /Documents/Fave-Films/movie.mp4`  | [FFmpeg supported formats](https://www.ffmpeg.org/general.html#File-Formats)                                                      |
 | Folder | `muvy /Downloads/Phone-Backup-1/Photos`   | [ImageMagick supported formats](https://www.imagemagick.org/script/formats.php)                                                 |
 
 ### Options
@@ -127,18 +128,23 @@ If you only specify one of them, the other will default to the start/end.
 Also see References#examples
 
 
-## References
-* Other movie barcode generators and collections
-  * [moviebarcode on tumblr](http://moviebarcode.tumblr.com/)
-  * [/u/etherealpenguin on reddit](https://www.reddit.com/r/dataisbeautiful/comments/3rb8zi/the_average_color_of_every_frame_of_a_given_movie/)
-  * lots of others iirc
-  * the python dudes for sure too
-* Slit scanning
-* K-means clustering as dominant color algorithms
-  * [k-means clustering on wikipedia](link)
-  * blogposts..
-* ImageMagick Histograms
+## Links
 * Binaries · Gems
   * [FFmpeg](https://www.ffmpeg.org/documentation.html) · [Streamio FFmpeg](https://github.com/streamio/streamio-ffmpeg)
   * [ImageMagick](https://www.imagemagick.org/script/command-line-options.php) · [MiniMagick](https://github.com/minimagick/minimagick)
   * [youtube-dl](https://github.com/rg3/youtube-dl) · [youtube-dl.rb](https://github.com/layer8x/youtube-dl.rb)
+* Other Works & Inspirations
+  * [Zach Whalen's Barcoder](http://zachwhalen.net/pg/barcoder/)
+  * [moviebarcode on tumblr](http://moviebarcode.tumblr.com/)
+  * [/u/etherealpenguin on reddit](https://www.reddit.com/r/dataisbeautiful/comments/3rb8zi/the_average_color_of_every_frame_of_a_given_movie/)
+  * [Colors of Motion](http://thecolorsofmotion.com/films)
+* Slit scanning
+  * [informal catalogue of research by Levin](http://www.flong.com/texts/lists/slit_scan/)
+* K-means clustering as dominant color algorithms
+  * [k-means clustering on wikipedia](link)
+  * <>
+* ImageMagick Histograms
+  * [Sparse color docs](http://www.imagemagick.org/Usage/canvas/#sparse-color)
+  * [Stackoverflow discussion (1)](https://stackoverflow.com/questions/40381273/apply-gradient-mask-on-image-that-already-has-transparency-with-imagemagick)
+* ImageMagick support
+  * tremendous thank you to [fmw](http://www.fmwconcepts.com/imagemagick/index.php) & [snibgo](http://im.snibgo.com/index.htm)
