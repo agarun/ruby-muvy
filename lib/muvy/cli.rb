@@ -30,6 +30,7 @@ module Muvy
                   "\n\t\t\s\s\s\sChoose one from: black:heavy black:medium black:light" +
                   "\n\t\t\s\s\s\s\t\t\s\s\s\s\swhite:heavy white:medium white:light" +
                   "\n\t\t\s\s\s\sDefault: none"
+        o.boolean "--arc", "Wrap all of the lines around a center point"
         o.boolean "-r", "--rotate", "Image will have horizontal lines"
         o.integer "-h", "--height", "Custom height of the final image"
         o.string "--start", "Custom video start time"
