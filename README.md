@@ -65,6 +65,18 @@ Optionally specify the path where your final image will be saved.
 Optionally specify currently supported styles: [solid](link) or [stretch](link).  
 **Default**: solid
 
+#### `-g, --gradient`
+Optionally add a gradient on top of the final image. Creates a separate image without the gradient as well.
+
+Choose one:
+```
+black:heavy black:medium black:light
+white:heavy white:medium white:light
+```
+**Default**: none
+
+[See examples](link)
+
 #### `--rotate`
 Pass `--rotate` to rotate the final image 90 degrees, i.e. to draw horizontal lines,
 where the top is the 'start' of your media file.  
