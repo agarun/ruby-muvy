@@ -72,7 +72,9 @@ module Muvy
         cmd << "+swap"
         cmd << "-alpha" << "Off"
         cmd.compose("CopyOpacity")
-        cmd << "-composite" << choice_path
+        cmd << "-composite"
+        cmd.negate unless choice[0] == "black"
+        cmd << choice_path
       end
 
       gradient_image = MiniMagick::Image.new(choice_path)
