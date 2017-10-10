@@ -21,11 +21,15 @@ module Muvy
         o.separator ""
         o.separator "Optional adjustments:"
         o.string  "-p", "--path", "Directory to save final images, " +
-                  "\n\t\t\tDefault: your pwd → #{Dir.pwd}",
+                  "\n\t\t\s\s\s\sDefault: your pwd → #{Dir.pwd}",
                   default: Dir.pwd
         o.string  "-s", "--style", "Choose image style: solid, stretch " +
-                  "\n\t\t\tDefault: solid",
+                  "\n\t\t\s\s\s\sDefault: solid",
                   default: "solid"
+        o.string  "-g", "--gradient", "Add a gradient over the final image" +
+                  "\n\t\t\s\s\s\sChoose one from: black:heavy black:medium black:light" +
+                  "\n\t\t\s\s\s\s\t\t\s\s\s\s\swhite:heavy white:medium white:light" +
+                  "\n\t\t\s\s\s\sDefault: none"
         o.boolean "-r", "--rotate", "Image will have horizontal lines"
         o.integer "-h", "--height", "Custom height of the final image"
         o.string "--start", "Custom video start time"
@@ -33,10 +37,10 @@ module Muvy
         o.string "--format", "Force youtube-dl to use a specific video quality"
         o.string "--frame_rate", <<~FPS
           Set a custom frame rate. Be careful!
-          \t\t\s\s\sSetting this to a high number might cause hundreds of
-          \t\t\s\s\sthousands of images to be generated in your sytem's temp dir.
-          \t\t\s\s\sThe specific frame_rate used by default for your file is printed
-          \t\t\s\s\safter generation. You can use that number to make a reasonable change.
+          \t\t\s\s\s\sSetting this to a high number might cause hundreds of
+          \t\t\s\s\s\sthousands of images to be generated in your sytem's temp dir.
+          \t\t\s\s\s\sThe specific frame_rate used by default for your file is printed
+          \t\t\s\s\s\safter generation. You can use that number to make a reasonable change.
         FPS
 
         o.separator "More:"
@@ -109,5 +113,6 @@ module Muvy
         #{options}
       MEDIA_ERROR
     end
+
   end
 end
