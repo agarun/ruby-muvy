@@ -55,7 +55,8 @@ module Muvy
         format: 135,
         output: "#{options[:tmp_dir]}/" +
                 Time.now.strftime("%d-%m-%Y-%H%M%S") +
-                ".mp4"
+                ".mp4",
+        no_warnings: true
       }
 
       @settings = defaults.merge!(options.select { |k, v| defaults.key?(k) && v })
