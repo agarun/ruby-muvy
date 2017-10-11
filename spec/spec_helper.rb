@@ -11,4 +11,11 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  def suppress_log_output
+    allow(STDOUT).to receive(:puts) # Suppress `puts` output
+    allow(STDERR).to receive(:write) # Suppress `abort` output
+    logger = double('Logger').as_null_object
+    allow(Logger).to receive(:new).and_return(logger)
+  end
 end
