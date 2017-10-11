@@ -38,7 +38,7 @@ module Muvy
       resize(image)
       gradient(image)
       rotate(image)
-      arc(image)
+      arc
     end
 
     # Arbitrary default height 720
@@ -91,10 +91,15 @@ module Muvy
       image.rotate(90) if options[:rotate]
     end
 
-    def arc(image)
-      # check if it was rotated, if it wasnt just do :
-      # convert <> -virtual-pixel Transparent -distort Arc 360 <>
-      # # arc 99% of width if twas rotated because of the white line that shows up
+    def arc
+      MiniMagick::Tool::Convert.new do |cmd|
+        cmd << options[:img]
+        cmd << "-gravity" << "center"
+        cmd << "+repage"
+        cmd << "-virtual-pixel" << "Transparent"
+        cmd << "-distort" << "Arc" << "366"
+        cmd << options[:img]
+      end
     end
 
     def printout
