@@ -98,7 +98,6 @@ Pass `--arc` to wrap all of the lines around a center point.
 #### `--rotate`
 Pass `--rotate` to rotate the final image 90 degrees, i.e. to draw horizontal lines,
 where the top is the 'start' of your media file.  
-TODO - check if the last sentence is true
 
 #### `-h, --height`
 Optionally specify a custom height for the output image.
@@ -127,7 +126,7 @@ of files to be temporarily created in your system's temp files.
 Optionally specify starting and ending times for processing videos.  
 If you only specify one of them, the other will default to the start/end.
 
-[Examples](link)
+[Examples](#examples)
 
 ### Features
 - [x] Accepting image galleries, local videos, and online videos
@@ -150,6 +149,7 @@ If you only specify one of them, the other will default to the start/end.
  - [ ] Generate audio waveforms
  - [ ] Randomize waveform colors
 - [ ] Presets
+- [ ] Use `popen3` since current gem wrappers are outdated (todo)
 
 ## Examples
 
@@ -191,7 +191,7 @@ If you only specify one of them, the other will default to the start/end.
 **Statistics**: generated at 0.4843 frames per second, final output 1780x720  
 
 
-<TODO: Samsara, Melancholia, Her, Mad Max, Leon the Professional>
+Hoping to add Samsara, Melancholia, Her, Mad Max, and Leon the Professional soon.
 
 
 ### YouTube
