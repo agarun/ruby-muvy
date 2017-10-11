@@ -92,26 +92,34 @@ module Muvy
     end
 
     def arc
-      MiniMagick::Tool::Convert.new do |cmd|
-        cmd << options[:img]
-        cmd << "-gravity" << "center"
-        cmd << "+repage"
-        cmd << "-virtual-pixel" << "Transparent"
-        cmd << "-distort" << "Arc" << "366"
-        cmd << options[:img]
+      if options[:arc]
+        MiniMagick::Tool::Convert.new do |cmd|
+          cmd << options[:img]
+          cmd << "-gravity" << "center"
+          cmd << "+repage"
+          cmd << "-virtual-pixel" << "Transparent"
+          cmd << "-distort" << "Arc" << "366"
+          cmd << options[:img]
+        end
       end
     end
 
     def printout
-      # TODO: add image width & height
-      puts "Saved to #{options[:img]}."
-      puts <<~PRINTOUT if options[:fps]
+      image = MiniMagick::Image.open(options[:img])
+      puts <<~PRINTOUT_IMG
+        Saved to #{options[:img]}.
+        Width: #{image.dimensions[0]}, Height: #{image.dimensions[1]}
+        Type: #{image.type}
+        Colorspace: #{image.colorspace}
+      PRINTOUT_IMG
+
+      puts <<~PRINTOUT_VIDEO if options[:fps]
 
         Thumbnails made at #{options[:frame_rate] ? options[:frame_rate] : (options[:fps] / (options[:media_length]**(1 / 1.99))).round(4) } frames per second.
         Original video duration was #{options[:media_length]}.
         #{'Start time: ' + options[:start].to_s if options[:start]}
         #{'End time: ' + options[:end].to_s if options[:end]}
-      PRINTOUT
+      PRINTOUT_VIDEO
     end
   end
 end
