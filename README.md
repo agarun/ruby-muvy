@@ -1,4 +1,6 @@
-![muvy-header](https://i.imgur.com/Akc3Fh9.png)
+<p align="center">
+  ![muvy-header](https://i.imgur.com/Akc3Fh9.png)
+</p>
 
 **muvy** is a simple Ruby movie barcode generator.  
 You can feed it a youtube video, phone gallery, or any locally stored video files. It pulls most of the frames out, moves around the colors, and throws them back together in a neat montage.
@@ -19,7 +21,8 @@ You can feed it a youtube video, phone gallery, or any locally stored video file
 
 ### Notes
 
-* Currently version 0.2.0, with many [features still planned](#features).
+* Currently version 0.1.2, with many [features still planned](#features).
+* Not optimized for sites other than YouTube
 
 ### Getting Started
 
@@ -36,7 +39,6 @@ $ gem install muvy
 ```
 
 #### Windows
-Note - This gem relies on dependencies that aren't particularly optimized for Windows, so the installation is not particularly pleasant...
 1. You can [download Ruby here](https://rubyinstaller.org/).  
 2. You can download Windows binaries for [ImageMagick here](https://www.imagemagick.org/script/download.php#windows), **noting**:
   * On the third installation window, [you need to check 2 boxes](https://i.imgur.com/d46sn8a.png):
@@ -46,7 +48,7 @@ Note - This gem relies on dependencies that aren't particularly optimized for Wi
 2. Grab [FFmpeg here](http://ffmpeg.zeranoe.com/builds/).
 3. You'll have to manually edit your PATH environment variable [like in this tutorial](https://www.wikihow.com/Install-FFmpeg-on-Windows).
 Once you set up FFmpeg in the PATH, you need to move the ImageMagick folder from 'User Variables' to the first entry in the 'System Variables' PATH variable so that Windows prefers ImageMagick `convert` over its own 'convert.exe'. [Here's an image showing that process](https://i.imgur.com/cf4HvCb.png).  
-ImageMagick 7 replaced `convert` with `magick` on Windows for your convenience, but this gem doesn't make use of that yet.
+ImageMagick 7 replaced `convert` with `magick` on Windows, but this gem can't make use of that yet.
 4. Get [youtube-dl here](https://rg3.github.io/youtube-dl/download.html).   
 5. Then, you can install any gem like so:  
 ```sh
@@ -60,7 +62,7 @@ $ gem install muvy
 
 | Type   | Command: `muvy [Type] [Options]`                                    | Support                                                                                       |
 |--------|--------------------------------------------|-----------------------------------------------------------------------------------------------|
-| URL    | `muvy https://someVideoSite.com/someVidID` | [youtube-dl supported sites](https://rg3.github.io/youtube-dl/supportedsites.html) |
+| URL    | `muvy https://youtube.com/someVidID` | [youtube-dl sites](https://rg3.github.io/youtube-dl/supportedsites.html), but most fail |
 | Local  | `muvy /Documents/Fave-Films/movie.mp4`  | [FFmpeg supported formats](https://www.ffmpeg.org/general.html#File-Formats)                                                      |
 | Folder | `muvy /Downloads/Phone-Backup-1/Photos`   | [ImageMagick supported formats](https://www.imagemagick.org/script/formats.php)                                                 |
 
@@ -72,7 +74,7 @@ Optionally specify the path where your final image will be saved.
 **Default**: your present working directory
 
 #### `-s, --style`
-Optionally specify currently supported styles: [solid](link) or [stretch](link).  
+Optionally specify currently supported styles: solid, stretch.  
 **Default**: solid
 
 #### `-g, --gradient`
@@ -85,12 +87,12 @@ white:heavy white:medium white:light
 ```
 **Default**: none
 
-[See examples](link)  
+[See examples](#examples)  
 
 #### `--arc`
 Pass `--arc` to wrap all of the lines around a center point.
 
-[See examples](link)  
+[See examples](#examples)  
 
 #### `--rotate`
 Pass `--rotate` to rotate the final image 90 degrees, i.e. to draw horizontal lines,
@@ -102,6 +104,7 @@ Optionally specify a custom height for the output image.
 
 #### `--format`
 Optionally force the download quality for `youtube-dl`.  
+This command is currently best-suited to youtube. To see possible formats for other sites, type `youtube-dl -F <URL>`; however, even when specifying a suitable format, the script might fail to run.
 This determines the height of your image when using `-s stretch` only if you didn't specify --height.  
 **Default**: 135 *(854x480 DASH at 24fps)*  
 
@@ -135,10 +138,11 @@ If you only specify one of them, the other will default to the start/end.
 - [ ] Spotmap output ('QR' code)
 - [ ] Slit scan output
 - [ ] 'Bedforms' output
+- [ ] Works with any youtube-dl supported site
 - [ ] Dominant color algorithms
  - [ ] via ImageMagick histograms
  - [ ] via k-means clustering
-- [ ] Fade to black or white on edges
+- [x] Fade to black or white on edges
 - [ ] Pixel thickness control
 - [ ] Colorspace adjustments
 - [ ] Accept music files
@@ -148,9 +152,97 @@ If you only specify one of them, the other will default to the start/end.
 
 ## Examples
 
+### Films
+
+
+<p align="center">
+  <img src="https://i.imgur.com/FpERYDO.png" />  
+</p>  
+
+**Film**: Spirited Away, released in 2001, runs for 125 minutes  
+**Command**: `muvy film.mkv -h 300`  
+**Statistics**: generated at 0.2712 frames per second, final output 2027x300  
+
+<p align="center">
+  <img src="https://i.imgur.com/ahDpJms.png" />
+</p>
+
+**Film**: The Grand Budapest Hotel, released in 2014, runs for 100 minutes  
+**Command**: `muvy "grand.avi" --end 01:33:40 --gradient black:medium --height 600`  
+**Statistics**: generated at 0.303 frames per second, final output 1703x600
+
+<p align="center">
+  <img src="https://i.imgur.com/Up9SWKm.png" />  
+</p>  
+
+**Film**: Kagemusha, released in 1980, runs for 162 minutes
+**Command**: `muvy film.mp4 --style stretch --gradient black:medium`
+**Statistics**: generated at 0.225 frames per second, final output 2439x688
+
+<p align="center">
+  <img src="https://i.imgur.com/IJyqy9Z.png" />  
+</p>  
+
+**Film**: It's Such A Beautiful Day, released in 2012, runs for 62 minutes
+**Command**: `muvy movie.mkv`
+**Statistics**: generated at 0.4843 frames per second, final output 1780x720
+
+<TODO: Samsara, Melancholia, Her, Mad Max, Leon the Professional>
+
+### YouTube
+
+**Video**: Holi by Variable, runs for 1 minute 47 seconds
+**Command**: `muvy https://www.youtube.com/watch?v=r64Xk7c4Mr4 --frame_rate 10 --style stretch -g white:medium`
+**Statistics**: generated at 10 frames per second
+
+<p align="center">
+  <img src="https://i.imgur.com/F00eot2.png" />  
+</p>  
+
+<p align="center">
+  <img src="https://i.imgur.com/rA2Ugr1.png" />  
+</p>  
+
+**Video**: Mahalia - Sober, runs for 3 minutes 36 seconds
+**Command** (1): `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 --height 200`
+**Command** (2): `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 --style stretch`
+**Statistics**:  
+
+**Video**:
+**Command**:
+**Statistics**:  
+
+**Video**:
+**Command**:
+**Statistics**:  
+
+**Video**:
+**Command**:
+**Statistics**:  
+
+### Arcs
+
+<p align="center">
+  <img src="https://preview.ibb.co/e49VLb/muvy_11_10_031219.png" />  
+</p>  
+
+**Video**: BBC Planet Earth II episode 1, runs for 58 minutes
+**Command**: `muvy episode.mp4 --arc -g black:light`
+**Statistics**:  generated at 0.4133 frames per second, final output 1176x1176
+
+**Film**:
+**Command**:
+**Statistics**:  
+
+### DCIM
+
+Coming soon...
+
 ## Troubleshooting
 
 Make sure you can access `ffmpeg -v`, `magick -v`, and `youtube-dl --version` on the command line. If you can't, you likely have to update your existing PATH environment variable to include the folder holding the relevant binaries. If you're on Windows and you are unsure how to add FFmpeg to path, you can try any of these links: [1](https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg), [2](https://video.stackexchange.com/questions/20495/how-do-i-set-up-and-use-ffmpeg-in-windows), [3](https://www.wikihow.com/Install-FFmpeg-on-Windows).
+
+If you're on Windows and *very* recently made changes, you probably have to reopen a command prompt window or restart for those changes to take effect.
 
 You might also want to update all three binaries.
 
