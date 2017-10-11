@@ -24,9 +24,10 @@ You can feed it a youtube video, phone gallery, or any locally stored video file
 ### Getting Started
 
 #### macOS
-If you don't already have FFmpeg, ImageMagick, or youtube-dl installed, you can download all of them with [Homebrew](https://brew.sh/). You can use `ffmpeg -v`, `convert -v`, or `youtube-dl --version` at the terminal to check if you've already got them.
+You can use `ffmpeg -v`, `convert -v`, or `youtube-dl --version` at the terminal to check if you already have the binaries.
 
-With Homewbrew, just bring up a terminal session and type:  
+If you don't already have FFmpeg, ImageMagick, or youtube-dl installed, you can download all of them with [Homebrew](https://brew.sh/). With Homebrew, just bring up a terminal session and type:
+
 ```sh
 $ brew install ffmpeg
 $ brew install imagemagick
@@ -35,13 +36,18 @@ $ gem install muvy
 ```
 
 #### Windows
+Note - This gem relies on dependencies that aren't particularly optimized for Windows, so the installation is not particularly pleasant...
 1. You can [download Ruby here](https://rubyinstaller.org/).  
-2. Then you can grab [FFmpeg here](http://ffmpeg.zeranoe.com/builds/).   
-3. ..and then download [ImageMagick here](https://www.imagemagick.org/script/download.php#windows), **noting**:
-  * On the nth installation window, you need to check 2 boxes:
-    * [x] Add folder to your path variable
-    * [x] Download legacy binaries
-4. And finally get [youtube-dl here](https://rg3.github.io/youtube-dl/download.html).   
+2. You can download Windows binaries for [ImageMagick here](https://www.imagemagick.org/script/download.php#windows), **noting**:
+  * On the third installation window, [you need to check 2 boxes](https://i.imgur.com/d46sn8a.png):
+    * [x] Add application directory to your system path
+    * [x] Install legacy utilities (e.g. convert)
+    * [ ] Keep 'Install FFmpeg' unchecked - IM's bundle doesn't include `ffprobe` & `ffplay`
+2. Grab [FFmpeg here](http://ffmpeg.zeranoe.com/builds/).
+3. You'll have to manually edit your PATH environment variable [like in this tutorial](https://www.wikihow.com/Install-FFmpeg-on-Windows).
+Once you set up FFmpeg in the PATH, you need to move the ImageMagick folder from 'User Variables' to the first entry in the 'System Variables' PATH variable so that Windows prefers ImageMagick `convert` over its own 'convert.exe'. [Here's an image showing that process](https://i.imgur.com/cf4HvCb.png).  
+ImageMagick 7 replaced `convert` with `magick` on Windows for your convenience, but this gem doesn't make use of that yet.
+4. Get [youtube-dl here](https://rg3.github.io/youtube-dl/download.html).   
 5. Then, you can install any gem like so:  
 ```sh
 $ gem install muvy
@@ -144,7 +150,7 @@ If you only specify one of them, the other will default to the start/end.
 
 ## Troubleshooting
 
-Make sure you can access `ffmpeg -v`, `magick -v`, and `youtube-dl --version` on the command line. If you can't, you likely have to update your existing PATH environment variable [like this](https://video.stackexchange.com/questions/20495/how-do-i-set-up-and-use-ffmpeg-in-windows).
+Make sure you can access `ffmpeg -v`, `magick -v`, and `youtube-dl --version` on the command line. If you can't, you likely have to update your existing PATH environment variable to include the folder holding the relevant binaries. If you're on Windows and you are unsure how to add FFmpeg to path, you can try any of these links: [1](https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg), [2](https://video.stackexchange.com/questions/20495/how-do-i-set-up-and-use-ffmpeg-in-windows), [3](https://www.wikihow.com/Install-FFmpeg-on-Windows).
 
 You might also want to update all three binaries.
 
@@ -158,8 +164,8 @@ If it's not working out, [I've linked more generators](#links) and methods that 
 * Other Works & Inspirations
   * [Zach Whalen's Barcoder](http://zachwhalen.net/pg/barcoder/)
   * [arcanesanctum generator](http://arcanesanctum.net/movie-barcode-generator/)
-  * [moviebarcode on tumblr](http://moviebarcode.tumblr.com/)
   * [/u/etherealpenguin on reddit](https://www.reddit.com/r/dataisbeautiful/comments/3rb8zi/the_average_color_of_every_frame_of_a_given_movie/)
+  * [moviebarcode on tumblr](http://moviebarcode.tumblr.com/)
   * [Colors of Motion](http://thecolorsofmotion.com/films)
 * Slit scanning
   * [informal catalogue of research on this topic by Levin](http://www.flong.com/texts/lists/slit_scan/)
