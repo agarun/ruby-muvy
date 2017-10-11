@@ -33,7 +33,6 @@ $ brew install imagemagick
 $ gem install muvy
 ```
 
-
 #### Windows
 1. You can [download Ruby here](https://rubyinstaller.org/).  
 2. Then you can grab [FFmpeg here](http://ffmpeg.zeranoe.com/builds/)..  
@@ -43,6 +42,7 @@ $ gem install muvy
 ```sh
 $ gem install muvy
 ```
+
 
 ## Usage
 
@@ -66,7 +66,7 @@ Optionally specify currently supported styles: [solid](link) or [stretch](link).
 **Default**: solid
 
 #### `-g, --gradient`
-Optionally add a gradient on top of the final image. Creates a separate image without the gradient as well.
+Optionally add a gradient on top of the final image.
 
 Choose one:
 ```
@@ -75,13 +75,17 @@ white:heavy white:medium white:light
 ```
 **Default**: none
 
-[See examples](link)
+[See examples](link)  
+
+#### `--arc`
+Wrap all of the lines around a center point.
+
+[See examples](link)  
 
 #### `--rotate`
 Pass `--rotate` to rotate the final image 90 degrees, i.e. to draw horizontal lines,
 where the top is the 'start' of your media file.  
-
-[Two examples](link)
+TODO - check if the last sentence is true
 
 #### `-h, --height`
 Optionally specify a custom height for the output image.
@@ -117,8 +121,9 @@ If you only specify one of them, the other will default to the start/end.
 - [x] Vertical lines
 - [x] Horizontal lines
 - [x] Stretched output (average of each line of pixels)
+- [x] Arc distortion
 - [ ] Spotmap output ('QR' code)
-- [ ] [Slit scan](http://www.flong.com/texts/lists/slit_scan/) output
+- [ ] Slit scan output
 - [ ] 'Bedforms' output
 - [ ] Dominant color algorithms
  - [ ] via ImageMagick histograms
@@ -151,7 +156,7 @@ Also see References#examples
   * [/u/etherealpenguin on reddit](https://www.reddit.com/r/dataisbeautiful/comments/3rb8zi/the_average_color_of_every_frame_of_a_given_movie/)
   * [Colors of Motion](http://thecolorsofmotion.com/films)
 * Slit scanning
-  * [informal catalogue of research by Levin](http://www.flong.com/texts/lists/slit_scan/)
+  * [informal catalogue of research on this topic by Levin](http://www.flong.com/texts/lists/slit_scan/)
 * K-means clustering as dominant color algorithms
   * [k-means clustering on wikipedia](link)
   * <>
