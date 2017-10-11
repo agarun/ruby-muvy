@@ -1,5 +1,5 @@
 <p align="center">
-  ![muvy-header](https://i.imgur.com/Akc3Fh9.png)
+  <img src="https://i.imgur.com/Akc3Fh9.png" alt="muvy-header" />
 </p>
 
 **muvy** is a simple Ruby movie barcode generator.  
