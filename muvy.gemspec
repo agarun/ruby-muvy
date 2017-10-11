@@ -20,10 +20,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "youtube-dl.rb"
-  spec.add_dependency "streamio-ffmpeg", "~> 3.0.2"
-  spec.add_dependency "mini_magick"
-  spec.add_dependency "slop"
+  spec.add_runtime_dependency "youtube-dl.rb", "~> 0"
+  spec.add_runtime_dependency "streamio-ffmpeg", "~> 3.0"
+  spec.add_runtime_dependency "mini_magick", "~> 4.8"
+  spec.add_runtime_dependency "slop", "~> 4.6"
 
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
