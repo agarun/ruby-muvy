@@ -39,8 +39,8 @@ $ gem install muvy
 2. Then you can grab [FFmpeg here](http://ffmpeg.zeranoe.com/builds/).   
 3. ..and then download [ImageMagick here](https://www.imagemagick.org/script/download.php#windows), **noting**:
   * On the nth installation window, you need to check 2 boxes:
-    * [x] thing
-    * [x] thing
+    * [x] Add folder to your path variable
+    * [x] Download legacy binaries
 4. And finally get [youtube-dl here](https://rg3.github.io/youtube-dl/download.html).   
 5. Then, you can install any gem like so:  
 ```sh
@@ -111,7 +111,7 @@ For example, if the stats printout used "1.6 fps," passing `--frame_rate 3.2`
 would double the amount of frames, lines, and subsequently the width.
 
 > Setting this to an unreasonable number might cause hundreds of thousands
-of files to be temporarily created in your system's temp files!
+of files to be temporarily created in your system's temp files.
 
 #### `--start` and `--end`
 Optionally specify starting and ending times for processing videos.  
@@ -157,6 +157,7 @@ If it's not working out, [I've linked more generators](#links) and methods that 
   * [youtube-dl](https://github.com/rg3/youtube-dl) · [youtube-dl.rb](https://github.com/layer8x/youtube-dl.rb)
 * Other Works & Inspirations
   * [Zach Whalen's Barcoder](http://zachwhalen.net/pg/barcoder/)
+  * [arcanesanctum generator](http://arcanesanctum.net/movie-barcode-generator/)
   * [moviebarcode on tumblr](http://moviebarcode.tumblr.com/)
   * [/u/etherealpenguin on reddit](https://www.reddit.com/r/dataisbeautiful/comments/3rb8zi/the_average_color_of_every_frame_of_a_given_movie/)
   * [Colors of Motion](http://thecolorsofmotion.com/films)
