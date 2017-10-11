@@ -41,11 +41,11 @@ $ gem install muvy
 
 #### Windows
 1. You can [download Ruby here](https://rubyinstaller.org/).  
-2. You can download Windows binaries for [ImageMagick here](https://www.imagemagick.org/script/download.php#windows), **noting**:
-  * On the third installation window, [you need to check 2 boxes](https://i.imgur.com/d46sn8a.png):
-    * [x] Add application directory to your system path
-    * [x] Install legacy utilities (e.g. convert)
-    * [ ] Keep 'Install FFmpeg' unchecked - IM's bundle doesn't include `ffprobe` & `ffplay`
+2. You can download Windows binaries for [ImageMagick here](https://www.imagemagick.org/script/download.php#windows), **noting**:  
+  On the third installation window, [you need to check 2 boxes](https://i.imgur.com/d46sn8a.png):
+    - [x] Add application directory to your system path
+    - [x] Install legacy utilities (e.g. convert)
+    - [ ] Keep 'Install FFmpeg' unchecked - IM's bundle doesn't include `ffprobe` & `ffplay`
 2. Grab [FFmpeg here](http://ffmpeg.zeranoe.com/builds/).
 3. You'll have to manually edit your PATH environment variable [like in this tutorial](https://www.wikihow.com/Install-FFmpeg-on-Windows).
 Once you set up FFmpeg in the PATH, you need to move the ImageMagick folder from 'User Variables' to the first entry in the 'System Variables' PATH variable so that Windows prefers ImageMagick `convert` over its own 'convert.exe'. [Here's an image showing that process](https://i.imgur.com/cf4HvCb.png).  
