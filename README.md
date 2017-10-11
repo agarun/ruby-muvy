@@ -14,6 +14,7 @@ You can feed it a youtube video, phone gallery, or any locally stored video file
   * [Options](#options)
   * [Features](#features)
 * [Examples](#examples)
+* [Troubleshooting](#troubleshooting)
 * [Links](#links)
 ------
 
@@ -215,14 +216,13 @@ If you only specify one of them, the other will default to the start/end.
 **Video**: Mahalia - Sober, runs for 3 minutes 36 seconds  
 **Command** (1): `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 --height 200`  
 **Command** (2): `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 --style stretch`  
-**Statistics**:  
 
 <p align="center">
   <img src="https://i.imgur.com/OMR4ffy.png?1" />  
 </p>  
 
 **Video**: The Banach–Tarski Paradox - Vsauce   
-**Command**: muvy https://www.youtube.com/watch?v=s86-Z-CbaHA  
+**Command**: `muvy https://www.youtube.com/watch?v=s86-Z-CbaHA`
 **Statistics**: generated at 0.62 frames per second, final output 898x720  
 
 
