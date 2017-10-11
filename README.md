@@ -104,7 +104,7 @@ Optionally specify a custom height for the output image.
 
 #### `--format`
 Optionally force the download quality for `youtube-dl`.  
-This command is currently best-suited to youtube. To see possible formats for other sites, type `youtube-dl -F <URL>`; however, even when specifying a suitable format, the script might fail to run.
+This command is currently best-suited to youtube. To see possible formats for other sites, type `youtube-dl -F <URL>`; however, even when specifying a suitable format, the script might fail to run.  
 This determines the height of your image when using `-s stretch` only if you didn't specify --height.  
 **Default**: 135 *(854x480 DASH at 24fps)*  
 
@@ -154,7 +154,6 @@ If you only specify one of them, the other will default to the start/end.
 
 ### Films
 
-
 <p align="center">
   <img src="https://i.imgur.com/FpERYDO.png" />  
 </p>  
@@ -162,6 +161,7 @@ If you only specify one of them, the other will default to the start/end.
 **Film**: Spirited Away, released in 2001, runs for 125 minutes  
 **Command**: `muvy film.mkv -h 300`  
 **Statistics**: generated at 0.2712 frames per second, final output 2027x300  
+
 
 <p align="center">
   <img src="https://i.imgur.com/ahDpJms.png" />
@@ -171,29 +171,38 @@ If you only specify one of them, the other will default to the start/end.
 **Command**: `muvy "grand.avi" --end 01:33:40 --gradient black:medium --height 600`  
 **Statistics**: generated at 0.303 frames per second, final output 1703x600
 
+
 <p align="center">
   <img src="https://i.imgur.com/Up9SWKm.png" />  
 </p>  
 
-**Film**: Kagemusha, released in 1980, runs for 162 minutes
-**Command**: `muvy film.mp4 --style stretch --gradient black:medium`
-**Statistics**: generated at 0.225 frames per second, final output 2439x688
+**Film**: Kagemusha, released in 1980, runs for 162 minutes  
+**Command**: `muvy film.mp4 --style stretch --gradient black:medium`  
+**Statistics**: generated at 0.225 frames per second, final output 2439x688  
+
 
 <p align="center">
-  <img src="https://i.imgur.com/IJyqy9Z.png" />  
+  <img src="https://i.imgur.com/Q3ETqJT.png" />  
 </p>  
 
-**Film**: It's Such A Beautiful Day, released in 2012, runs for 62 minutes
-**Command**: `muvy movie.mkv`
-**Statistics**: generated at 0.4843 frames per second, final output 1780x720
+**Film**: It's Such A Beautiful Day, released in 2012, runs for 62 minutes  
+**Command**: `muvy movie.mkv --height 200`  
+**Statistics**: generated at 0.4843 frames per second, final output 1780x720  
+
 
 <TODO: Samsara, Melancholia, Her, Mad Max, Leon the Professional>
 
+
 ### YouTube
 
-**Video**: Holi by Variable, runs for 1 minute 47 seconds
-**Command**: `muvy https://www.youtube.com/watch?v=r64Xk7c4Mr4 --frame_rate 10 --style stretch -g white:medium`
-**Statistics**: generated at 10 frames per second
+<p align="center">  
+  <img src="https://i.imgur.com/ZnydeV2.png" width="452" height="455" />  
+</p>  
+
+**Video**: Holi by Variable, runs for 1 minute 47 seconds  
+**Command**: `muvy https://www.youtube.com/watch?v=r64Xk7c4Mr4 --frame_rate 10 --style stretch -g white:medium`  
+**Statistics**: generated at 10 frames per second  
+
 
 <p align="center">
   <img src="https://i.imgur.com/F00eot2.png" />  
@@ -203,40 +212,39 @@ If you only specify one of them, the other will default to the start/end.
   <img src="https://i.imgur.com/rA2Ugr1.png" />  
 </p>  
 
-**Video**: Mahalia - Sober, runs for 3 minutes 36 seconds
-**Command** (1): `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 --height 200`
-**Command** (2): `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 --style stretch`
+**Video**: Mahalia - Sober, runs for 3 minutes 36 seconds  
+**Command** (1): `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 --height 200`  
+**Command** (2): `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 --style stretch`  
 **Statistics**:  
 
-**Video**:
-**Command**:
-**Statistics**:  
+<p align="center">
+  <img src="https://i.imgur.com/OMR4ffy.png?1" />  
+</p>  
 
-**Video**:
-**Command**:
-**Statistics**:  
+**Video**: The Banach–Tarski Paradox - Vsauce   
+**Command**: muvy https://www.youtube.com/watch?v=s86-Z-CbaHA  
+**Statistics**: generated at 0.62 frames per second, final output 898x720  
 
-**Video**:
-**Command**:
-**Statistics**:  
 
 ### Arcs
 
 <p align="center">
-  <img src="https://preview.ibb.co/e49VLb/muvy_11_10_031219.png" />  
-</p>  
+  <img src="https://preview.ibb.co/e49VLb/muvy_11_10_031219.png" width="350" height="350" hspace = "20" />
+  <img src="https://image.ibb.co/b2GmbG/muvy_11_10_042756.png" width="350" height="350" />  
+</p>
 
-**Video**: BBC Planet Earth II episode 1, runs for 58 minutes
-**Command**: `muvy episode.mp4 --arc -g black:light`
-**Statistics**:  generated at 0.4133 frames per second, final output 1176x1176
 
-**Film**:
-**Command**:
-**Statistics**:  
+**Video** (left): BBC Planet Earth II episode 1, runs for 58 minutes  
+**Command**: `muvy episode.mp4 --arc -g black:light`  
+**Statistics**:  generated at 0.4133 frames per second, final output 1176x1176  
 
-### DCIM
+**Video** (right): Speed Drawing  
+**Command**: `muvy https://www.youtube.com/watch?v=P3UozWhL6A0 --start 0:04 --end 04:45 --arc`  
+**Statistics**: generated at 1.7185 frames per second, final output 872x872  
 
-Coming soon...
+### DCIM  
+
+Coming soon...  
 
 ## Troubleshooting
 
