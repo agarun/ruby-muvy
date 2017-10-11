@@ -18,4 +18,19 @@ RSpec.configure do |config|
     logger = double('Logger').as_null_object
     allow(Logger).to receive(:new).and_return(logger)
   end
+
+  # Thor's spec_helper
+  # https://bokstuff.com/testing-thor-command-lines-with-rspec/
+  def capture(stream)
+    begin
+      stream = stream.to_s
+      eval "$#{stream} = StringIO.new"
+      yield
+      result = eval("$#{stream}").string
+    ensure
+      eval("$#{stream} = #{stream.upcase}")
+    end
+
+    result
+  end
 end
