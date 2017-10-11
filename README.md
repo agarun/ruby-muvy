@@ -24,20 +24,24 @@ You can feed it a youtube video, phone gallery, or any locally stored video file
 ### Getting Started
 
 #### macOS
-If you don't already have FFmpeg and ImageMagick installed (you can use `ffmpeg -v` or `convert -v` in terminal to check if you do), you can download all of them with [Homebrew](https://brew.sh/).   
+If you don't already have FFmpeg, ImageMagick, or youtube-dl installed, you can download all of them with [Homebrew](https://brew.sh/). You can use `ffmpeg -v`, `convert -v`, or `youtube-dl --version` at the terminal to check if you've already got them.
 
 With Homewbrew, just bring up a terminal session and type:  
 ```sh
 $ brew install ffmpeg
 $ brew install imagemagick
+$ brew install youtube-dl
 $ gem install muvy
 ```
 
 #### Windows
 1. You can [download Ruby here](https://rubyinstaller.org/).  
-2. Then you can grab [FFmpeg here](http://ffmpeg.zeranoe.com/builds/)..  
-3. ..and then download [ImageMagick here](https://www.imagemagick.org/script/download.php#windows).   
-4. After installing everything, make sure you can access `ffmpeg -v` or `convert -v` on the command line. If you can't, you likely have to update your existing PATH environment variable [like this](https://video.stackexchange.com/questions/20495/how-do-i-set-up-and-use-ffmpeg-in-windows).  
+2. Then you can grab [FFmpeg here](http://ffmpeg.zeranoe.com/builds/).   
+3. ..and then download [ImageMagick here](https://www.imagemagick.org/script/download.php#windows), **noting**:
+  * On the nth installation window, you need to check 2 boxes:
+    * [x] thing
+    * [x] thing
+4. And finally get [youtube-dl here](https://rg3.github.io/youtube-dl/download.html).   
 5. Then, you can install any gem like so:  
 ```sh
 $ gem install muvy
@@ -78,7 +82,7 @@ white:heavy white:medium white:light
 [See examples](link)  
 
 #### `--arc`
-Wrap all of the lines around a center point.
+Pass `--arc` to wrap all of the lines around a center point.
 
 [See examples](link)  
 
@@ -138,12 +142,13 @@ If you only specify one of them, the other will default to the start/end.
 
 ## Examples
 
-// title //
-// picture //
-// code used to generate it //  
+## Troubleshooting
 
-Also see References#examples
+Make sure you can access `ffmpeg -v`, `magick -v`, and `youtube-dl --version` on the command line. If you can't, you likely have to update your existing PATH environment variable [like this](https://video.stackexchange.com/questions/20495/how-do-i-set-up-and-use-ffmpeg-in-windows).
 
+You might also want to update all three binaries.
+
+If it's not working out, [I've linked more generators](#links) and methods that you can try out, most of them depending on some combination of `ffmpeg` and `ImageMagick`.
 
 ## Links
 * Binaries · Gems
@@ -159,7 +164,6 @@ Also see References#examples
   * [informal catalogue of research on this topic by Levin](http://www.flong.com/texts/lists/slit_scan/)
 * K-means clustering as dominant color algorithms
   * [k-means clustering on wikipedia](link)
-  * <>
 * ImageMagick Histograms
   * [Sparse color docs](http://www.imagemagick.org/Usage/canvas/#sparse-color)
   * [Stackoverflow discussion (1)](https://stackoverflow.com/questions/40381273/apply-gradient-mask-on-image-that-already-has-transparency-with-imagemagick)
