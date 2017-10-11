@@ -34,9 +34,11 @@ module Muvy
     def modification
       image = MiniMagick::Image.new(options[:img])
 
+      # TODO: Programatically trigger the methods based on options `nil` status
       resize(image)
       gradient(image)
       rotate(image)
+      arc(image)
     end
 
     # Arbitrary default height 720
@@ -49,44 +51,50 @@ module Muvy
     end
 
     def gradient(image)
-      choice = options[:gradient].split(":") if options[:gradient]
-      choice_path = File.absolute_path(options[:path]) +
-        "/muvy-" + Time.now.strftime('%d-%m-%H%M%S') +
-        "gradient-#{choice.join('_')}" + ".png"
+      if options[:gradient]
+        choice = options[:gradient].split(":")
+        choice_path = "#{options[:tmp_dir]}/muvy-gradient.png"
 
-      weights = {
-        "heavy" => 2.1,
-        "medium" => 1.5,
-        "light" => 0.8
-      }
+        weights = {
+          "heavy" => 1.6,
+          "medium" => 0.9,
+          "light" => 0.5
+        }
 
-      MiniMagick::Tool::Convert.new do |cmd|
-        cmd.size("#{image.width}x#{image.height}")
-        cmd << "gradient:"
-        cmd << "-function" << "Polynomial" << "-4,4,.1"
-        cmd << "-evaluate" << "Pow" << weights[choice[1]]
-        cmd.negate unless choice[0] == "white"
-        cmd.stack do |stack|
-          stack.merge! ["+clone", "-fill", "Black", "-colorize", "100"]
+        MiniMagick::Tool::Convert.new do |cmd|
+          cmd.size("#{image.width}x#{image.height}")
+          cmd << "gradient:"
+          cmd << "-function" << "Polynomial" << "-4,4,.1"
+          cmd << "-evaluate" << "Pow" << weights[choice[1]]
+          cmd.negate unless choice[0] == "white"
+          cmd.stack do |stack|
+            stack.merge! ["+clone", "-fill", "Black", "-colorize", "100"]
+          end
+          cmd << "+swap"
+          cmd << "-alpha" << "Off"
+          cmd.compose("CopyOpacity")
+          cmd << "-composite"
+          cmd.negate unless choice[0] == "black"
+          cmd << choice_path
         end
-        cmd << "+swap"
-        cmd << "-alpha" << "Off"
-        cmd.compose("CopyOpacity")
-        cmd << "-composite"
-        cmd.negate unless choice[0] == "black"
-        cmd << choice_path
-      end
 
-      gradient_image = MiniMagick::Image.new(choice_path)
-      apply_gradient = image.composite(gradient_image) do |composite|
-        composite.compose "Over"
-      end
+        gradient_image = MiniMagick::Image.new(choice_path)
+        apply_gradient = image.composite(gradient_image) do |composite|
+          composite.compose "Over"
+        end
 
-      apply_gradient.write(choice_path)
+        apply_gradient.write(options[:img])
+      end
     end
 
     def rotate(image)
       image.rotate(90) if options[:rotate]
+    end
+
+    def arc(image)
+      # check if it was rotated, if it wasnt just do :
+      # convert <> -virtual-pixel Transparent -distort Arc 360 <>
+      # # arc 99% of width if twas rotated because of the white line that shows up
     end
 
     def printout
