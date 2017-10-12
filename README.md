@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="https://i.imgur.com/Akc3Fh9.png" alt="muvy-header" />
+
+<img src="https://i.imgur.com/Akc3Fh9.png" alt="muvy-header" />
+
 </p>
 
 **muvy** is a simple Ruby movie barcode generator.  
@@ -79,21 +81,15 @@ Optionally specify currently supported styles: solid, stretch.
 **Default**: solid
 
 #### `-g, --gradient`
-Optionally add a gradient on top of the final image.
-
-Choose one:
+Optionally add a gradient on top of the final image. You can choose one:
 ```
 black:heavy black:medium black:light
 white:heavy white:medium white:light
 ```
 **Default**: none
 
-[See examples](#examples)  
-
 #### `--arc`
-Pass `--arc` to wrap all of the lines around a center point.
-
-[See examples](#examples)  
+Pass `--arc` to wrap all of the lines around a center point. [See examples](#examples)  
 
 #### `--rotate`
 Pass `--rotate` to rotate the final image 90 degrees, i.e. to draw horizontal lines,
@@ -104,11 +100,9 @@ Optionally specify a custom height for the output image.
 
 #### `--format`
 Optionally force the download quality for `youtube-dl`.  
-This command is currently best-suited to youtube. To see possible formats for other sites, type `youtube-dl -F <URL>`; however, even when specifying a suitable format, the script might fail to run.  
+This command is currently best-suited to youtube. To see possible formats for other sites, type `youtube-dl -F <URL>` or see [youtube-dl docs on format selection](https://github.com/rg3/youtube-dl/blob/master/README.md#format-selection); however, even when specifying a suitable format, the script might fail to run.  
 This determines the height of your image when using `-s stretch` only if you didn't specify --height.  
-**Default**: 135 *(854x480 DASH at 24fps)*  
-
-See [youtube-dl docs on format selection](https://github.com/rg3/youtube-dl/blob/master/README.md#format-selection).
+**Default**: 135 *(854x480 DASH at 24fps)*.
 
 #### `--frame_rate`
 Optionally specify the amount of frames to extract per second from the media.  
@@ -116,7 +110,7 @@ This determines the width of the image.
 
 You should run `muvy [..]` without this option once and check the stats printout
 to get an idea of a better number.  
-For example, if the stats printout used "1.6 fps," passing `--frame_rate 3.2`
+For example, if the stats printout readsM "1.6 fps," passing `--frame_rate 3.2`
 would double the amount of frames, lines, and subsequently the width.
 
 > Setting this to an unreasonable number might cause hundreds of thousands
@@ -124,127 +118,210 @@ of files to be temporarily created in your system's temp files.
 
 #### `--start` and `--end`
 Optionally specify starting and ending times for processing videos.  
-If you only specify one of them, the other will default to the start/end.
+If you only specify one, the other will default (e.g. if you only give --end, start -> 0).
 
-[Examples](#examples)
 
 ### Features
-- [x] Accepting image galleries, local videos, and online videos
-- [x] Specifying start & end times for frame extraction
-- [x] Vertical lines
-- [x] Horizontal lines
-- [x] Stretched output (average of each line of pixels)
-- [x] Arc distortion
-- [ ] Spotmap output ('QR' code)
-- [ ] Slit scan output
-- [ ] 'Bedforms' output
-- [ ] Works with any youtube-dl supported site
-- [ ] Dominant color algorithms
- - [ ] via ImageMagick histograms
- - [ ] via k-means clustering
-- [x] Fade to black or white on edges
-- [ ] Pixel thickness control
-- [ ] Colorspace adjustments
-- [ ] Accept music files
- - [ ] Generate audio waveforms
- - [ ] Randomize waveform colors
-- [ ] Presets
-- [ ] Use `popen3` since current gem wrappers are outdated (todo)
+- Formats
+  - [x] Accepts image galleries, local videos, and online videos
+    - [ ] Works with *any* youtube-dl supported site
+    - [x] Specify start & end times for frame extraction
+  - [ ] Accept music files
+    - [ ] Generate audio waveforms
+    - [ ] Randomize waveform colors
+- Image Output
+  - [x] Vertical lines
+  - [x] Horizontal lines
+  - [x] 'Stretched' output, taking average of each line of pixels
+  - [x] Arc distortion
+  - [ ] Spotmap output, akin to 'QR' code
+  - [ ] Slit scan output
+  - [ ] 'Bedforms' output
+  - [ ] Stacked lines output, inspired by [Sol Lewitt's work](https://www.google.com/search?q=sol+lewitt&rlz=1C5CHFA_enUS757US757&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjLjP7y5unWAhWb0YMKHcNQBhcQ_AUICigB&biw=1276&bih=680)
+    - [ ] Choose inset borders
+    - [ ] Curvature
+  - [ ] Crosshatch lines output
+- Image adjustments
+  - [x] Fade to black or white on edges
+  - [ ] Pixel thickness control
+  - [ ] Colorspace changes
+- Generation
+  - [ ] Dominant color algorithms
+    - [ ] via ImageMagick histograms
+    - [ ] via k-means clustering
+- Compatibility
+  - [ ] Use `popen3` since current gem wrappers are outdated (TODO)
 
 ## Examples
 
 ### Films
 
-<p align="center">
-  <img src="https://i.imgur.com/FpERYDO.png" />  
-</p>  
+<div align="center">
+<img src="https://i.imgur.com/FpERYDO.png" />  
+<h4>Spirited Away (2001)</h4>
+`muvy film.mkv -h 300`  
+0.27 frames per second on 125 minutes  
+final resolution 2027x300  
+</div>  
 
-**Film**: Spirited Away, released in 2001, runs for 125 minutes  
-**Command**: `muvy film.mkv -h 300`  
-**Statistics**: generated at 0.2712 frames per second, final output 2027x300  
+<br><br>
 
+<div align="center">
+<img src="https://i.imgur.com/dpyoILD.png" />   
+<h4>Mad Max: Fury Road (2015)</h4>
+`muvy madden.mkv --end 01:52:50 -h 300`   
+0.276 frames per second on 120 minutes  
+final resolution 1868x300  
+</div>  
 
-<p align="center">
-  <img src="https://i.imgur.com/ahDpJms.png" />
-</p>
+<br><br>
 
-**Film**: The Grand Budapest Hotel, released in 2014, runs for 100 minutes  
-**Command**: `muvy "grand.avi" --end 01:33:40 --gradient black:medium --height 600`  
-**Statistics**: generated at 0.303 frames per second, final output 1703x600
+<div align="center">
+<img src="https://i.imgur.com/ahDpJms.png" />
+<h4>The Grand Budapest Hotel (2014)</h4>
+`muvy "grand.avi" --end 01:33:40 --gradient black:medium --height 600`  
+0.303 frames per second on 100 minutes  
+final resolution 1703x600  
+</div>  
 
+<br><br>
 
-<p align="center">
-  <img src="https://i.imgur.com/Up9SWKm.png" />  
-</p>  
+<div align="center">
+<img src="https://i.imgur.com/pov6s07.png" />   
+<h4>Her (2013)</h4>
+`muvy film.mp4 -g black:medium -h 720`   
+0.269 frames per second on 126 minutes  
+final resolution 1919x720  
+</div>  
 
-**Film**: Kagemusha, released in 1980, runs for 162 minutes  
-**Command**: `muvy film.mp4 --style stretch --gradient black:medium`  
-**Statistics**: generated at 0.225 frames per second, final output 2439x688  
+<br><br>
 
+<div align="center">
+<img src="https://i.imgur.com/JEHqHoG.png" />   
+<h4>Melancholia (2011)</h4>
+`muvy film.mp4 --gradient black:medium`   
+0.277 frames per second on 136 minutes  
+final resolution 2158x720  
+</div>  
 
-<p align="center">
-  <img src="https://i.imgur.com/Q3ETqJT.png" />  
-</p>  
+<br><br>
 
-**Film**: It's Such A Beautiful Day, released in 2012, runs for 62 minutes  
-**Command**: `muvy movie.mkv --height 200`  
-**Statistics**: generated at 0.4843 frames per second, final output 1780x720  
+<div align="center">
+<img src="https://i.imgur.com/Up9SWKm.png" />  
+<h4>Kagemusha (1980)</h4>
+`muvy film.mp4 --style stretch --gradient black:medium`  
+0.225 frames per second on 162 minutes  
+final resolution 2439x688  
+</div>  
 
+<br><br>
 
-Hoping to add Samsara, Melancholia, Her, Mad Max, and Leon the Professional soon.
+<div align="center">
+<img src="https://i.imgur.com/j9yNVdN.png" />   
+<img src="https://i.imgur.com/OgOgnz0.png" />   
+<h4>Samsara (2011)</h4>
+(1) `muvy film.avi --end 01:35:00 -s stretch -g black:medium`  
+(2) `muvy "Samsara 2011 BRRip XviD AC3 - HDSi.avi" --height 150 --end 01:35:00`  
+0.3 frames per second on 95 minutes  
+</div>  
 
+<br><br>
+
+<div align="center">
+<img src="https://i.imgur.com/7b7MWHX.png" />   
+<h4>Baraka (1992)</h4>
+`muvy film.avi --height 150 --end 01:30:30`   
+0.3 frames per second on 90 minutes   
+final resolution 1663x150  
+</div>  
+
+<br><br>
+
+<div align="center">
+<img src="https://i.imgur.com/Q3ETqJT.png" />   
+<h4>It's Such A Beautiful Day (2012)</h4>
+`muvy film.mkv --height 200`   
+0.4843 frames per second on 62 minutes  
+final resolution 1780x720    
+</div>  
+
+<br><br>
 
 ### YouTube
 
-<p align="center">  
-  <img src="https://i.imgur.com/ZnydeV2.png" width="452" height="455" />  
-</p>  
+<div align="center">
+<img src="https://i.imgur.com/V0ecs7s.png" />   
+<h4>Holi by Variable</h4>
+`muvy https://www.youtube.com/watch?v=r64Xk7c4Mr4 --frame_rate 10 --style stretch`   
+slow-motion youtube video   
+10 frames per second on 1 minute 47 seconds   
+final resolution 1073x480  
+</div>  
 
-**Video**: Holi by Variable, runs for 1 minute 47 seconds  
-**Command**: `muvy https://www.youtube.com/watch?v=r64Xk7c4Mr4 --frame_rate 10 --style stretch -g white:medium`  
-**Statistics**: generated at 10 frames per second  
+<br><br>
 
+<div align="center">
+<img src="https://i.imgur.com/F00eot2.png" />   
+<img src="https://i.imgur.com/rA2Ugr1.png" />     
+<h4>Mahalia - Sober by COLORS</h4>
+(1) `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 -h 200`  
+(2) `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 -s stretch`  
+frames per second on 3 minutes 36 seconds  
+</div>  
 
-<p align="center">
-  <img src="https://i.imgur.com/F00eot2.png" />  
-</p>  
+<br><br>
 
-<p align="center">
-  <img src="https://i.imgur.com/rA2Ugr1.png" />  
-</p>  
+<div align="center">
+<img src="https://i.imgur.com/OMR4ffy.png?1" />
+<h4>The Banach–Tarski Paradox by Vsauce</h4>
+`muvy https://www.youtube.com/watch?v=s86-Z-CbaHA`     
+0.62 frames per second on 24 minutes 14 seconds  
+final resolution 898x720  
+</div>  
 
-**Video**: Mahalia - Sober, runs for 3 minutes 36 seconds  
-**Command** (1): `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 --height 200`  
-**Command** (2): `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 --style stretch`  
+<br><br>
 
-<p align="center">
-  <img src="https://i.imgur.com/OMR4ffy.png?1" />  
-</p>  
+<div align="center">
+<img src="https://i.imgur.com/pdHnMQQ.png" />   
+<h4>Colors In Macro by Macro Room</h4>
+`muvy https://www.youtube.com/watch?v=gNbSjMFd7j4 --start 0:16 --end 2:07 --style stretch --frame_rate 10`     
+10 frames per second on ~ 2 minutes  
+final resolution 1110x480  
+</div>  
 
-**Video**: The Banach–Tarski Paradox - Vsauce   
-**Command**: `muvy https://www.youtube.com/watch?v=s86-Z-CbaHA`
-**Statistics**: generated at 0.62 frames per second, final output 898x720  
+<br><br>
 
+<div align="center">
+<img src="https://image.ibb.co/g4WEVb/3.png" width="350" height="350" hspace="20" />
+<img src="https://image.ibb.co/eLRsGG/2.png" width="350" height="350" />    
+<h4>Ink In Motion by Macro Room</h4>
+(1) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 2:47 --frame_rate 10 --rotate --arc`     
+(2) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 1:20 --frame_rate 10 --rotate --arc`   
+</div>  
 
-### Arcs
+<br><br>
 
-<p align="center">
-  <img src="https://preview.ibb.co/e49VLb/muvy_11_10_031219.png" width="350" height="350" hspace = "20" />
-  <img src="https://image.ibb.co/b2GmbG/muvy_11_10_042756.png" width="350" height="350" />  
-</p>
+<div align="center">
+<img src="https://preview.ibb.co/e49VLb/muvy_11_10_031219.png" width="300" height="300" />
+<h4>BBC Planet Earth II Episode 1</h4>
+`muvy episode.mp4 --arc -g black:light`    
+0.413 frames per second on 58 minutes  
+final resolution 1176x1176  
 
+<br><br>
 
-**Video** (left): BBC Planet Earth II episode 1, runs for 58 minutes  
-**Command**: `muvy episode.mp4 --arc -g black:light`  
-**Statistics**:  generated at 0.4133 frames per second, final output 1176x1176  
+<img src="https://image.ibb.co/b2GmbG/muvy_11_10_042756.png" width="300" height="300" />
+<h4>Speed Drawing</h4>
+`muvy https://www.youtube.com/watch?v=P3UozWhL6A0 --start 0:04 --end 04:45 --arc`  
+1.7185 frames per second  
+final resolution 872x872  
+</div>  
 
-**Video** (right): Speed Drawing  
-**Command**: `muvy https://www.youtube.com/watch?v=P3UozWhL6A0 --start 0:04 --end 04:45 --arc`  
-**Statistics**: generated at 1.7185 frames per second, final output 872x872  
+<br><br>
 
 ### DCIM  
 
-Coming soon...  
+TODO
 
 ## Troubleshooting
 
