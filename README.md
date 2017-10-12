@@ -266,7 +266,7 @@ final resolution 1073x480
 <h4>Mahalia - Sober by COLORS</h4>
 (1) `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 -h 200`  
 (2) `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 -s stretch`  
-frames per second on 3 minutes 36 seconds  
+7.5 frames per second on 3 minutes 36 seconds  
 </div>  
 
 <br><br>
@@ -295,8 +295,8 @@ final resolution 1110x480
 <img src="https://image.ibb.co/g4WEVb/3.png" width="350" height="350" hspace="20" />
 <img src="https://image.ibb.co/eLRsGG/2.png" width="350" height="350" />    
 <h4>Ink In Motion by Macro Room</h4>
-(1) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 2:47 --frame_rate 10 --rotate --arc`     
-(2) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 1:20 --frame_rate 10 --rotate --arc`   
+(1) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 1:20 --frame_rate 10 -r -s stretch`       
+(2) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 1:20 --frame_rate 10 -r --arc`   
 </div>  
 
 <br><br>
