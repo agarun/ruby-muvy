@@ -22,14 +22,11 @@ module Muvy
     end
 
     def average
-      # Store the average photos here
-      Dir.mkdir("#{options[:tmp_dir]}/muvy-img-folder/")
-
       photos.each_with_index do |photo, i|
         MiniMagick::Tool::Convert.new do |convert|
           convert << photo
           convert.resize("1x#{height}!")
-          convert << "#{options[:tmp_dir]}/muvy-img-folder/thumb#{i.to_s.rjust(6, '0')}.png"
+          convert << "#{options[:tmp_dir]}/thumb#{i.to_s.rjust(6, '0')}.png"
         end
       end
     end
@@ -50,7 +47,7 @@ module Muvy
     end
 
     def send_thumbs
-      Image.new("#{options[:tmp_dir]}/muvy-img-folder", options).run
+      Image.new(options[:tmp_dir], options).run
     end
   end
 end
