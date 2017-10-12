@@ -124,6 +124,7 @@ If you only specify one, the other will default (e.g. if you only give --end, st
 ### Features
 - Formats
   - [x] Accepts image galleries, local videos, and online videos
+    - [ ] Works with *any* size image folder (very large folders cause output issues)
     - [ ] Works with *any* youtube-dl supported site
     - [x] Specify start & end times for frame extraction
   - [ ] Accept music files
@@ -359,7 +360,16 @@ final resolution 872x872
 
 ### DCIM  
 
-TODO
+DCIM merging is currently a bit buggy in that it will create extra random lines if it's low on memory.
+
+<div align="center">
+<img src="https://i.imgur.com/0DbOO11.png" height="400" />
+<h4>2016 Travel</h4>
+
+`muvy imagefolder/`  
+
+2350 photos
+</div>  
 
 ## Troubleshooting
 
