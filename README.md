@@ -110,7 +110,7 @@ This determines the width of the image.
 
 You should run `muvy [..]` without this option once and check the stats printout
 to get an idea of a better number.  
-For example, if the stats printout readsM "1.6 fps," passing `--frame_rate 3.2`
+For example, if the stats printout reads "1.6 fps," passing `--frame_rate 3.2`
 would double the amount of frames, lines, and subsequently the width.
 
 > Setting this to an unreasonable number might cause hundreds of thousands
