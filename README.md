@@ -236,7 +236,7 @@ final resolution 2439x688
 (1) `muvy film.avi --end 01:35:00 -s stretch -g black:medium`  
 
 
-(2) `muvy "Samsara 2011 BRRip XviD AC3 - HDSi.avi" --height 150 --end 01:35:00`  
+(2) `muvy film.avi --height 150 --end 01:35:00`  
 
 0.3 frames per second on 95 minutes  
 </div>  
