@@ -24,7 +24,7 @@ You can feed it a youtube video, phone gallery, or any locally stored video file
 
 ### Notes
 
-* Currently version 0.1.1, with many [features still planned](#features).
+* Currently version 0.1.2, with many [features still planned](#features).
 * Not optimized for sites other than YouTube
 
 ### Getting Started
