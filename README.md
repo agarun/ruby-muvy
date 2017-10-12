@@ -118,7 +118,7 @@ of files to be temporarily created in your system's temp files.
 
 #### `--start` and `--end`
 Optionally specify starting and ending times for processing videos.  
-If you only specify one, the other will default (e.g. if you only give --end, start -> 0).
+If you only specify one, the other will default (e.g. if you only give --end, start is 0).
 
 
 ### Features
@@ -159,7 +159,9 @@ If you only specify one, the other will default (e.g. if you only give --end, st
 <div align="center">
 <img src="https://i.imgur.com/FpERYDO.png" />  
 <h4>Spirited Away (2001)</h4>
+
 `muvy film.mkv -h 300`  
+
 0.27 frames per second on 125 minutes  
 final resolution 2027x300  
 </div>  
@@ -169,7 +171,9 @@ final resolution 2027x300
 <div align="center">
 <img src="https://i.imgur.com/dpyoILD.png" />   
 <h4>Mad Max: Fury Road (2015)</h4>
+
 `muvy madden.mkv --end 01:52:50 -h 300`   
+
 0.276 frames per second on 120 minutes  
 final resolution 1868x300  
 </div>  
@@ -179,7 +183,9 @@ final resolution 1868x300
 <div align="center">
 <img src="https://i.imgur.com/ahDpJms.png" />
 <h4>The Grand Budapest Hotel (2014)</h4>
+
 `muvy "grand.avi" --end 01:33:40 --gradient black:medium --height 600`  
+
 0.303 frames per second on 100 minutes  
 final resolution 1703x600  
 </div>  
@@ -189,7 +195,9 @@ final resolution 1703x600
 <div align="center">
 <img src="https://i.imgur.com/pov6s07.png" />   
 <h4>Her (2013)</h4>
+
 `muvy film.mp4 -g black:medium -h 720`   
+
 0.269 frames per second on 126 minutes  
 final resolution 1919x720  
 </div>  
@@ -199,7 +207,9 @@ final resolution 1919x720
 <div align="center">
 <img src="https://i.imgur.com/JEHqHoG.png" />   
 <h4>Melancholia (2011)</h4>
+
 `muvy film.mp4 --gradient black:medium`   
+
 0.277 frames per second on 136 minutes  
 final resolution 2158x720  
 </div>  
@@ -209,7 +219,9 @@ final resolution 2158x720
 <div align="center">
 <img src="https://i.imgur.com/Up9SWKm.png" />  
 <h4>Kagemusha (1980)</h4>
+
 `muvy film.mp4 --style stretch --gradient black:medium`  
+
 0.225 frames per second on 162 minutes  
 final resolution 2439x688  
 </div>  
@@ -220,8 +232,12 @@ final resolution 2439x688
 <img src="https://i.imgur.com/j9yNVdN.png" />   
 <img src="https://i.imgur.com/OgOgnz0.png" />   
 <h4>Samsara (2011)</h4>
+
 (1) `muvy film.avi --end 01:35:00 -s stretch -g black:medium`  
+
+
 (2) `muvy "Samsara 2011 BRRip XviD AC3 - HDSi.avi" --height 150 --end 01:35:00`  
+
 0.3 frames per second on 95 minutes  
 </div>  
 
@@ -230,7 +246,9 @@ final resolution 2439x688
 <div align="center">
 <img src="https://i.imgur.com/7b7MWHX.png" />   
 <h4>Baraka (1992)</h4>
+
 `muvy film.avi --height 150 --end 01:30:30`   
+
 0.3 frames per second on 90 minutes   
 final resolution 1663x150  
 </div>  
@@ -240,7 +258,9 @@ final resolution 1663x150
 <div align="center">
 <img src="https://i.imgur.com/Q3ETqJT.png" />   
 <h4>It's Such A Beautiful Day (2012)</h4>
+
 `muvy film.mkv --height 200`   
+
 0.4843 frames per second on 62 minutes  
 final resolution 1780x720    
 </div>  
@@ -252,7 +272,9 @@ final resolution 1780x720
 <div align="center">
 <img src="https://i.imgur.com/V0ecs7s.png" />   
 <h4>Holi by Variable</h4>
+
 `muvy https://www.youtube.com/watch?v=r64Xk7c4Mr4 --frame_rate 10 --style stretch`   
+
 slow-motion youtube video   
 10 frames per second on 1 minute 47 seconds   
 final resolution 1073x480  
@@ -264,8 +286,12 @@ final resolution 1073x480
 <img src="https://i.imgur.com/F00eot2.png" />   
 <img src="https://i.imgur.com/rA2Ugr1.png" />     
 <h4>Mahalia - Sober by COLORS</h4>
+
 (1) `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 -h 200`  
+
+
 (2) `muvy https://www.youtube.com/watch?v=QK7JQl9jNzM --frame_rate 7.5 --start 0:05 --end 3:23 -s stretch`  
+
 7.5 frames per second on 3 minutes 36 seconds  
 </div>  
 
@@ -274,7 +300,9 @@ final resolution 1073x480
 <div align="center">
 <img src="https://i.imgur.com/OMR4ffy.png?1" />
 <h4>The Banach–Tarski Paradox by Vsauce</h4>
+
 `muvy https://www.youtube.com/watch?v=s86-Z-CbaHA`     
+
 0.62 frames per second on 24 minutes 14 seconds  
 final resolution 898x720  
 </div>  
@@ -284,7 +312,9 @@ final resolution 898x720
 <div align="center">
 <img src="https://i.imgur.com/pdHnMQQ.png" />   
 <h4>Colors In Macro by Macro Room</h4>
+
 `muvy https://www.youtube.com/watch?v=gNbSjMFd7j4 --start 0:16 --end 2:07 --style stretch --frame_rate 10`     
+
 10 frames per second on ~ 2 minutes  
 final resolution 1110x480  
 </div>  
@@ -295,8 +325,12 @@ final resolution 1110x480
 <img src="https://image.ibb.co/g4WEVb/3.png" width="350" height="350" hspace="20" />
 <img src="https://image.ibb.co/eLRsGG/2.png" width="350" height="350" />    
 <h4>Ink In Motion by Macro Room</h4>
+
 (1) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 1:20 --frame_rate 10 -r -s stretch`       
+
+
 (2) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 1:20 --frame_rate 10 -r --arc`   
+
 </div>  
 
 <br><br>
@@ -304,7 +338,9 @@ final resolution 1110x480
 <div align="center">
 <img src="https://preview.ibb.co/e49VLb/muvy_11_10_031219.png" width="300" height="300" />
 <h4>BBC Planet Earth II Episode 1</h4>
+
 `muvy episode.mp4 --arc -g black:light`    
+
 0.413 frames per second on 58 minutes  
 final resolution 1176x1176  
 
@@ -312,7 +348,9 @@ final resolution 1176x1176
 
 <img src="https://image.ibb.co/b2GmbG/muvy_11_10_042756.png" width="300" height="300" />
 <h4>Speed Drawing</h4>
+
 `muvy https://www.youtube.com/watch?v=P3UozWhL6A0 --start 0:04 --end 04:45 --arc`  
+
 1.7185 frames per second  
 final resolution 872x872  
 </div>  
