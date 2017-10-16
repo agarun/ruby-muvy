@@ -1,6 +1,6 @@
 <p align="center">
 
-<img src="https://i.imgur.com/Akc3Fh9.png" alt="muvy-header" />
+<img src="https://i.imgur.com/GGaJUzQ.png" alt="muvy-header" />
 
 </p>
 
@@ -18,7 +18,7 @@ You can feed it a youtube video, phone gallery, or any locally stored video file
 * [Examples](#examples)
 * [Troubleshooting](#troubleshooting)
 * [Links](#links)
-------
+
 
 ## Install
 
@@ -88,8 +88,9 @@ white:heavy white:medium white:light
 ```
 **Default**: none
 
-#### `--arc`
-Pass `--arc` to wrap all of the lines around a center point. [See examples](#examples)  
+#### `-a, --arc`
+Pass `--arc <style name>` to wrap all of the lines around the center.  
+You can choose from: circle, iris. [See examples](#examples)!   
 
 #### `--rotate`
 Pass `--rotate` to rotate the final image 90 degrees, i.e. to draw horizontal lines,
@@ -299,7 +300,7 @@ final resolution 1073x480
 <br><br>
 
 <div align="center">
-<img src="https://i.imgur.com/OMR4ffy.png?1" />
+<img src="https://i.imgur.com/OMR4ffy.png?1" height="300" />
 <h4>The Banach–Tarski Paradox by Vsauce</h4>
 
 `muvy https://www.youtube.com/watch?v=s86-Z-CbaHA`     
@@ -324,7 +325,7 @@ final resolution 1110x480
 
 <div align="center">
 <img src="https://image.ibb.co/g4WEVb/3.png" width="350" height="350" hspace="20" />
-<img src="https://image.ibb.co/eLRsGG/2.png" width="350" height="350" />    
+<img src="" width="350" height="350" />    
 <h4>Ink In Motion by Macro Room</h4>
 
 (1) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 1:20 --frame_rate 10 -r -s stretch`       
@@ -337,20 +338,14 @@ final resolution 1110x480
 <br><br>
 
 <div align="center">
-<img src="https://preview.ibb.co/e49VLb/muvy_11_10_031219.png" width="300" height="300" />
-<h4>BBC Planet Earth II Episode 1</h4>
-
-`muvy episode.mp4 --arc -g black:light`    
-
-0.413 frames per second on 58 minutes  
-final resolution 1176x1176  
-
-<br><br>
-
-<img src="https://image.ibb.co/b2GmbG/muvy_11_10_042756.png" width="300" height="300" />
+<img src="https://image.ibb.co/b2GmbG/muvy_11_10_042756.png" width="350" height="350" hspace="20" />
+<img src="https://image.ibb.co/b2GmbG/muvy_11_10_042756.png" width="350" height="350" />    
 <h4>Speed Drawing</h4>
 
-`muvy https://www.youtube.com/watch?v=P3UozWhL6A0 --start 0:04 --end 04:45 --arc`  
+(1) `muvy https://www.youtube.com/watch?v=P3UozWhL6A0 --start 0:04 --end 04:45 --arc circle`     
+
+
+(2) `..`   
 
 1.7185 frames per second  
 final resolution 872x872  
@@ -363,7 +358,7 @@ final resolution 872x872
 DCIM merging is currently a bit buggy in that it will create extra random lines if it's low on memory.
 
 <div align="center">
-<img src="https://i.imgur.com/0DbOO11.png" height="400" />
+<img src="https://i.imgur.com/0DbOO11.png" height="240" />
 <h4>2016 Travel</h4>
 
 `muvy imagefolder/`  
