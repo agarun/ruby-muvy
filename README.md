@@ -24,15 +24,14 @@ You can feed it a youtube video, phone gallery, or any locally stored video file
 
 ### Notes
 
-* Currently version 0.1.2, with many [features still planned](#features).
-* Not optimized for sites other than YouTube
+* Currently version 0.1.2, with many [features still planned](#features)
+  * Not optimized for online sites other than YouTube
 
 ### Getting Started
 
 #### macOS
-You can use `ffmpeg -v`, `convert -v`, or `youtube-dl --version` at the terminal to check if you already have the binaries.
-
-If you don't already have FFmpeg, ImageMagick, or youtube-dl installed, you can download all of them with [Homebrew](https://brew.sh/). With Homebrew, just bring up a terminal session and type:
+1. You can use `ffmpeg -v`, `convert -v`, or `youtube-dl --version` at the terminal to check if you already have the binaries.
+2. If you don't already have FFmpeg, ImageMagick, or youtube-dl installed, you can download all of them with [Homebrew](https://brew.sh/). With Homebrew, just bring up a terminal session and type:
 
 ```sh
 $ brew install ffmpeg
@@ -42,17 +41,17 @@ $ gem install muvy
 ```
 
 #### Windows
-1. You can [download Ruby here](https://rubyinstaller.org/).  
-2. You can download Windows binaries for [ImageMagick here](https://www.imagemagick.org/script/download.php#windows), **noting**:  
-  On the third installation window, [you need to check 2 boxes](https://i.imgur.com/d46sn8a.png):
+1. [Install Ruby](https://rubyinstaller.org/)  
+2. [Install Windows binaries for ImageMagick](https://www.imagemagick.org/script/download.php#windows), noting:  
+  On the third installation window, [check these 2 boxes](https://i.imgur.com/d46sn8a.png):
     - [x] Add application directory to your system path
     - [x] Install legacy utilities (e.g. convert)
-    - [ ] Keep 'Install FFmpeg' unchecked - IM's bundle doesn't include `ffprobe` & `ffplay`
-2. Grab [FFmpeg here](http://ffmpeg.zeranoe.com/builds/).
+    - [ ] Keep 'Install FFmpeg' unchecked. IM's bundle doesn't include `ffprobe` & `ffplay`
+2. [Install FFmpeg](http://ffmpeg.zeranoe.com/builds/)
 3. You'll have to manually edit your PATH environment variable [like in this tutorial](https://www.wikihow.com/Install-FFmpeg-on-Windows).
-Once you set up FFmpeg in the PATH, you need to move the ImageMagick folder from 'User Variables' to the first entry in the 'System Variables' PATH variable so that Windows prefers ImageMagick `convert` over its own 'convert.exe'. [Here's an image showing that process](https://i.imgur.com/cf4HvCb.png).  
+After setting up FFmpeg in the PATH, bring up the 'envrionment variables' window. Move the ImageMagick folder from 'User Variables' to the first entry in the 'System Variables' so that Windows prefers ImageMagick `convert` over its own 'convert.exe'. [Here's an image showing that process](https://i.imgur.com/cf4HvCb.png)  
 ImageMagick 7 replaced `convert` with `magick` on Windows, but this gem can't make use of that yet.
-4. Get [youtube-dl here](https://rg3.github.io/youtube-dl/download.html).   
+4. [Install youtube-dl](https://rg3.github.io/youtube-dl/download.html).   
 5. Then, you can install any gem like so:  
 ```sh
 $ gem install muvy
@@ -65,7 +64,7 @@ $ gem install muvy
 
 | Type   | Command: `muvy [Type] [Options]`                                    | Support                                                                                       |
 |--------|--------------------------------------------|-----------------------------------------------------------------------------------------------|
-| URL    | `muvy https://youtube.com/someVidID` | [youtube-dl sites](https://rg3.github.io/youtube-dl/supportedsites.html), but most fail |
+| URL    | `muvy https://youtube.com/someVidID` | [youtube-dl sites](https://rg3.github.io/youtube-dl/supportedsites.html), but many fail |
 | Local  | `muvy /Documents/Fave-Films/movie.mp4`  | [FFmpeg supported formats](https://www.ffmpeg.org/general.html#File-Formats)                                                      |
 | Folder | `muvy /Downloads/Phone-Backup-1/Photos`   | [ImageMagick supported formats](https://www.imagemagick.org/script/formats.php)                                                 |
 
@@ -76,39 +75,61 @@ $ gem install muvy
 Optionally specify the path where your final image will be saved.  
 **Default**: your present working directory
 
+<br>
+
 #### `-s, --style`
-Optionally specify currently supported styles: solid, stretch.  
-**Default**: solid
+Optionally specify currently supported styles.  
+**Styles**: `solid`, `stretch`  
+**Default**: `solid`
+
+<br>
 
 #### `-g, --gradient`
-Optionally add a gradient on top of the final image. You can choose one:
-```
-black:heavy black:medium black:light
-white:heavy white:medium white:light
-```
+Optionally add a gradient on top of the final image.   
+**Styles**: `black:heavy` `black:medium` `black:light`   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`white:heavy` `white:medium` `white:light`   
 **Default**: none
 
-#### `-a, --arc`
-Pass `--arc <style name>` to wrap all of the lines around the center.  
-You can choose from: circle, iris. [See examples](#examples)!   
+<br>
 
-#### `--rotate`
-Pass `--rotate` to rotate the final image 90 degrees, i.e. to draw horizontal lines,
-where the top is the 'start' of your media file.  
+
+#### `-a, --arc`
+Arc all of the colored lines around the center point.   
+**Styles**: `circle`, `iris` (annulus)  
+**Default**: none
+
+<br>
+
+
+#### `-r, --rotate`
+Pass to rotate the final image 90 degrees to draw horizontal lines, where the top is the 'start' of the media.   
+**Default**: none (vertical lines)  
+
+<br>
+
 
 #### `-h, --height`
 Optionally specify a custom height for the output image.
 
+<br>
+
+
 #### `--format`
-Optionally force the download quality for `youtube-dl`.  
+Optionally force the download quality for `youtube-dl`.   
+Determines the height of your image when using `--style stretch` only if you didn't specify `--height`.  
+**Default**: `135` *corresponds to 854x480 DASH at 24fps*  
+
+<br>
 This command is currently best-suited to youtube. To see possible formats for other sites, type `youtube-dl -F <URL>` or see [youtube-dl docs on format selection](https://github.com/rg3/youtube-dl/blob/master/README.md#format-selection); however, even when specifying a suitable format, the script might fail to run.  
-This determines the height of your image when using `-s stretch` only if you didn't specify --height.  
-**Default**: 135 *(854x480 DASH at 24fps)*.
+
+
+<br>
+
 
 #### `--frame_rate`
 Optionally specify the amount of frames to extract per second from the media.  
-This determines the width of the image.  
-
+Determines the width of the image.  
+<br>
 You should run `muvy [..]` without this option once and check the stats printout
 to get an idea of a better number.  
 For example, if the stats printout reads "1.6 fps," passing `--frame_rate 3.2`
@@ -117,9 +138,15 @@ would double the amount of frames, lines, and subsequently the width.
 > Setting this to an unreasonable number might cause hundreds of thousands
 of files to be temporarily created in your system's temp files.
 
+<br>
+
+
 #### `--start` and `--end`
 Optionally specify starting and ending times for processing videos.  
-If you only specify one, the other will default (e.g. if you only give --end, start is 0).
+If you only specify one, the other will default. For example, if you only pass --end *N*, start defaults to 0.
+
+<br>
+
 
 
 ### Features
@@ -139,7 +166,7 @@ If you only specify one, the other will default (e.g. if you only give --end, st
   - [ ] Spotmap output, akin to 'QR' code
   - [ ] Slit scan output
   - [ ] 'Bedforms' output
-  - [ ] Stacked lines output, inspired by [Sol Lewitt's work](https://www.google.com/search?q=sol+lewitt&rlz=1C5CHFA_enUS757US757&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjLjP7y5unWAhWb0YMKHcNQBhcQ_AUICigB&biw=1276&bih=680)
+  - [ ] Stacked lines output, inspired by [Sol Lewitt](https://www.google.com/search?q=sol+lewitt&rlz=1C5CHFA_enUS757US757&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjLjP7y5unWAhWb0YMKHcNQBhcQ_AUICigB&biw=1276&bih=680)
     - [ ] Choose inset borders
     - [ ] Curvature
   - [ ] Crosshatch lines output
@@ -168,7 +195,7 @@ If you only specify one, the other will default (e.g. if you only give --end, st
 final resolution 2027x300  
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
 <img src="https://i.imgur.com/dpyoILD.png" />   
@@ -180,7 +207,7 @@ final resolution 2027x300
 final resolution 1868x300  
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
 <img src="https://i.imgur.com/ahDpJms.png" />
@@ -192,7 +219,7 @@ final resolution 1868x300
 final resolution 1703x600  
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
 <img src="https://i.imgur.com/pov6s07.png" />   
@@ -204,7 +231,7 @@ final resolution 1703x600
 final resolution 1919x720  
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
 <img src="https://i.imgur.com/JEHqHoG.png" />   
@@ -216,7 +243,7 @@ final resolution 1919x720
 final resolution 2158x720  
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
 <img src="https://i.imgur.com/Up9SWKm.png" />  
@@ -228,7 +255,7 @@ final resolution 2158x720
 final resolution 2439x688  
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
 <img src="https://i.imgur.com/j9yNVdN.png" />   
@@ -243,7 +270,7 @@ final resolution 2439x688
 0.3 frames per second on 95 minutes  
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
 <img src="https://i.imgur.com/7b7MWHX.png" />   
@@ -255,7 +282,7 @@ final resolution 2439x688
 final resolution 1663x150  
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
 <img src="https://i.imgur.com/Q3ETqJT.png" />   
@@ -267,7 +294,7 @@ final resolution 1663x150
 final resolution 1780x720    
 </div>  
 
-<br><br>
+<br><br><br>
 
 ### YouTube
 
@@ -282,7 +309,7 @@ slow-motion youtube video
 final resolution 1073x480  
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
 <img src="https://i.imgur.com/F00eot2.png" />   
@@ -297,10 +324,10 @@ final resolution 1073x480
 7.5 frames per second on 3 minutes 36 seconds  
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
-<img src="https://i.imgur.com/OMR4ffy.png?1" height="300" />
+<img src="https://i.imgur.com/OMR4ffy.png?1" height="240" />
 <h4>The Banach–Tarski Paradox by Vsauce</h4>
 
 `muvy https://www.youtube.com/watch?v=s86-Z-CbaHA`     
@@ -309,7 +336,7 @@ final resolution 1073x480
 final resolution 898x720  
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
 <img src="https://i.imgur.com/pdHnMQQ.png" />   
@@ -321,7 +348,7 @@ final resolution 898x720
 final resolution 1110x480  
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
 <img src="https://image.ibb.co/g4WEVb/3.png" width="350" height="350" hspace="20" />
@@ -335,7 +362,7 @@ final resolution 1110x480
 
 </div>  
 
-<br><br>
+<br><br><br>
 
 <div align="center">
 <img src="https://image.ibb.co/b2GmbG/muvy_11_10_042756.png" width="350" height="350" hspace="20" />
@@ -351,7 +378,7 @@ final resolution 1110x480
 final resolution 872x872  
 </div>  
 
-<br><br>
+<br><br><br>
 
 ### DCIM  
 
