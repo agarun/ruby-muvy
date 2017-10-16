@@ -98,7 +98,13 @@ module Muvy
           cmd << "-gravity" << "center"
           cmd << "+repage"
           cmd << "-virtual-pixel" << "Transparent"
-          cmd << "-distort" << "Arc" << "366"
+
+          if options[:arc] == "iris"
+            cmd << "-distort" << "Arc" << "363 0 540 180"
+          else
+            cmd << "-distort" << "Arc" << "363"
+          end
+
           cmd << options[:img]
         end
       end
