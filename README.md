@@ -1,11 +1,13 @@
 <p align="center">
 
-<img src="https://i.imgur.com/GGaJUzQ.png" alt="muvy-header" />
+<a href="#examples"><img src="https://i.imgur.com/BTuglHv.png" alt="muvy-header" /></a>
+
+<br>
 
 </p>
 
 **muvy** is a simple Ruby movie barcode generator.  
-You can feed it a youtube video, phone gallery, or any locally stored video files. It pulls most of the frames out, moves around the colors, and throws them back together in a neat montage.
+You can feed it a youtube video, phone gallery, or any locally stored video files. It pulls the frames out, moves around the colors, and throws them back together in a neat montage.
 
 ------
 * [Install](#install)
@@ -22,10 +24,11 @@ You can feed it a youtube video, phone gallery, or any locally stored video file
 
 ## Install
 
-### Notes
+### Changelog
 
-* Currently version 0.1.2, with many [features still planned](#features)
-  * Not optimized for online sites other than YouTube
+* Version 0.1.2
+  * Adds YouTube support. Not yet optimized for most other video sites.
+  * [Many features still planned](#features)!
 
 ### Getting Started
 
@@ -86,8 +89,9 @@ Optionally specify currently supported styles.
 
 #### `-g, --gradient`
 Optionally add a gradient on top of the final image.   
-**Styles**: `black:heavy` `black:medium` `black:light`   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`white:heavy` `white:medium` `white:light`   
+**Styles**:   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`black:heavy` `black:medium` `black:light`   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`white:heavy` `white:medium` `white:light`   
 **Default**: none
 
 <br>
@@ -119,8 +123,8 @@ Optionally force the download quality for `youtube-dl`.
 Determines the height of your image when using `--style stretch` only if you didn't specify `--height`.  
 **Default**: `135` *corresponds to 854x480 DASH at 24fps*  
 
-<br>
-This command is currently best-suited to youtube. To see possible formats for other sites, type `youtube-dl -F <URL>` or see [youtube-dl docs on format selection](https://github.com/rg3/youtube-dl/blob/master/README.md#format-selection); however, even when specifying a suitable format, the script might fail to run.  
+
+This command is currently best-suited to YouTube. To see possible formats for other sites, type `youtube-dl -F <URL>` or see [youtube-dl docs on format selection](https://github.com/rg3/youtube-dl/blob/master/README.md#format-selection); however, even when specifying a suitable format, the script might fail to run.  
 
 
 <br>
@@ -129,7 +133,8 @@ This command is currently best-suited to youtube. To see possible formats for ot
 #### `--frame_rate`
 Optionally specify the amount of frames to extract per second from the media.  
 Determines the width of the image.  
-<br>
+
+
 You should run `muvy [..]` without this option once and check the stats printout
 to get an idea of a better number.  
 For example, if the stats printout reads "1.6 fps," passing `--frame_rate 3.2`
@@ -143,7 +148,7 @@ of files to be temporarily created in your system's temp files.
 
 #### `--start` and `--end`
 Optionally specify starting and ending times for processing videos.  
-If you only specify one, the other will default. For example, if you only pass --end *N*, start defaults to 0.
+If you only specify one, the other will default. For example, if you only pass `--end N`, start defaults to 0.
 
 <br>
 
@@ -352,7 +357,7 @@ final resolution 1110x480
 
 <div align="center">
 <img src="https://image.ibb.co/g4WEVb/3.png" width="350" height="350" hspace="20" />
-<img src="" width="350" height="350" />    
+<img src="https://image.ibb.co/eLRsGG/2.png" width="350" height="350" />    
 <h4>Ink In Motion by Macro Room</h4>
 
 (1) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 1:20 --frame_rate 10 -r -s stretch`       
@@ -366,7 +371,7 @@ final resolution 1110x480
 
 <div align="center">
 <img src="https://image.ibb.co/b2GmbG/muvy_11_10_042756.png" width="350" height="350" hspace="20" />
-<img src="https://image.ibb.co/b2GmbG/muvy_11_10_042756.png" width="350" height="350" />    
+<img src="" width="350" height="350" />    
 <h4>Speed Drawing</h4>
 
 (1) `muvy https://www.youtube.com/watch?v=P3UozWhL6A0 --start 0:04 --end 04:45 --arc circle`     
