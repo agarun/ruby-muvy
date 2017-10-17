@@ -1,10 +1,8 @@
-<p align="center">
+<div align="center">
 
 <a href="#examples"><img src="https://i.imgur.com/BTuglHv.png" alt="muvy-header" /></a>
 
-<br>
-
-</p>
+</div>
 
 **muvy** is a simple Ruby movie barcode generator.  
 You can feed it a youtube video, phone gallery, or any locally stored video files. It pulls the frames out, moves around the colors, and throws them back together in a neat montage.
