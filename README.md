@@ -26,7 +26,7 @@ You can feed it a youtube video, phone gallery, or any locally stored video file
 
 ### Changelog
 
-* Version 0.1.2
+* Version 0.1.3
   * Adds YouTube support. Not yet optimized for most other video sites.
   * [Many features still planned](#features)!
 
@@ -360,10 +360,10 @@ final resolution 1110x480
 <img src="https://image.ibb.co/eLRsGG/2.png" width="350" height="350" />    
 <h4>Ink In Motion by Macro Room</h4>
 
-(1) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 1:20 --frame_rate 10 -r -s stretch`       
+(1) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 1:20 --frame_rate 10 -s stretch -a circle`       
 
 
-(2) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 1:20 --frame_rate 10 -r --arc`   
+(2) `muvy https://www.youtube.com/watch?v=BmBh0NNEm00 --start 0:37 --end 1:20 --frame_rate 10 -r --arc circle`   
 
 </div>  
 
@@ -371,13 +371,13 @@ final resolution 1110x480
 
 <div align="center">
 <img src="https://image.ibb.co/b2GmbG/muvy_11_10_042756.png" width="350" height="350" hspace="20" />
-<img src="" width="350" height="350" />    
+<img src="https://image.ibb.co/jQ08D6/muvy_16_10_225636.png" width="350" height="350" />    
 <h4>Speed Drawing</h4>
 
 (1) `muvy https://www.youtube.com/watch?v=P3UozWhL6A0 --start 0:04 --end 04:45 --arc circle`     
 
 
-(2) `..`   
+(2) `muvy https://www.youtube.com/watch?v=P3UozWhL6A0 --start 0:04 --end 04:45 --arc circle -r`   
 
 1.7185 frames per second  
 final resolution 872x872  
