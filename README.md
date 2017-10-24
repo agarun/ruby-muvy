@@ -383,9 +383,57 @@ final resolution 872x872
 
 <br><br><br>
 
+The following iris examples had colored backgrounds added to them in post.
+
+<br>
+
+<div align="center">
+<img src="https://i.imgur.com/WAO2zIY.png" width="350" height="350" hspace="20" />
+<img src="https://i.imgur.com/22LN4RV.png" width="350" height="350" />    
+<h4>Kurzgesagt - The Rise of the Machines</h4>
+
+(1) `muvy https://www.youtube.com/watch?v=WSKi8HfcxEk --arc iris`     
+
+
+(2) `muvy https://www.youtube.com/watch?v=WSKi8HfcxEk --arc iris --rotate`   
+
+1.1154 frames per second on 11:40   
+final resolution 1082x1082  
+</div>  
+
+<br><br><br>
+
+<div align="center">
+<img src="https://i.imgur.com/8r0Rnmz.png" width="350" height="350" hspace="20" />
+<img src="https://i.imgur.com/JwB44Fn.png" width="350" height="350" />    
+<h4>Kurzgesagt - Why Age? Should We End Aging Forever?</h4>
+
+(1) `muvy https://www.youtube.com/watch?v=GoJsr4IwCm4 --arc iris`     
+
+
+(2) `muvy https://www.youtube.com/watch?v=GoJsr4IwCm4 --arc iris --rotate`   
+
+1.463 frames per second on 06:48  
+final resolution 1082x1082  
+</div>  
+
+<br><br><br>
+
+<div align="center">
+<img src="https://i.imgur.com/vxFMTlE.png" />   
+<h4>Kurzgesagt - Death From Space — Gamma-Ray Bursts Explained</h4>
+
+`muvy https://www.youtube.com/watch?v=RLykC1VN7NY --arc iris`     
+
+1.4186 frames per second on 07:13   
+final resolution 1082x1082    
+</div>  
+
+<br><br><br>
+
 ### DCIM  
 
-DCIM merging is currently a bit buggy in that it will create extra random lines if it's low on memory.
+DCIM merging is currently a bit buggy in that it will create extra random lines if it's very low on memory (usually occurs when feeding thousands of 16MP+ photos).
 
 <div align="center">
 <img src="https://i.imgur.com/0DbOO11.png" height="240" />
@@ -398,7 +446,7 @@ DCIM merging is currently a bit buggy in that it will create extra random lines 
 
 ## Troubleshooting
 
-Make sure you can access `ffmpeg -v`, `magick -v`, and `youtube-dl --version` on the command line. If you can't, you likely have to update your existing PATH environment variable to include the folder holding the relevant binaries. If you're on Windows and you are unsure how to add FFmpeg to path, you can try any of these links: [1](https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg), [2](https://video.stackexchange.com/questions/20495/how-do-i-set-up-and-use-ffmpeg-in-windows), [3](https://www.wikihow.com/Install-FFmpeg-on-Windows).
+Make sure you can access `ffmpeg -v`, `convert -v`, and `youtube-dl --version` on the command line. If you can't, you likely have to update your existing PATH environment variable to include the folder holding the relevant binaries. If you're on Windows and you are unsure how to add FFmpeg to path, you can try any of these links: [1](https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg), [2](https://video.stackexchange.com/questions/20495/how-do-i-set-up-and-use-ffmpeg-in-windows), [3](https://www.wikihow.com/Install-FFmpeg-on-Windows).
 
 If you're on Windows and *very* recently made changes, you probably have to reopen a command prompt window or restart for those changes to take effect.
 
