@@ -24,7 +24,7 @@ You can feed it a youtube video, phone gallery, or any locally stored video file
 
 ### Changelog
 
-* Version 0.1.3
+* [![muvy gem version](https://img.shields.io/gem/v/muvy.svg)]() [![muvy gem number of downloads](https://img.shields.io/gem/dt/muvy.svg)]() [![muvy last commit](https://img.shields.io/github/last-commit/agarun/ruby-muvy.svg)]()
   * Adds YouTube support. Not yet optimized for most other video sites.
   * [Many features still planned](#features)!
 
