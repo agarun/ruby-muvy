@@ -25,7 +25,7 @@ You can feed it a youtube video, phone gallery, or any locally stored video file
 ### Changelog
 
 * [![muvy gem version](https://img.shields.io/gem/v/muvy.svg)]() [![muvy gem number of downloads](https://img.shields.io/gem/dt/muvy.svg)]() [![muvy last commit](https://img.shields.io/github/last-commit/agarun/ruby-muvy.svg)]()
-  * Adds YouTube support. Not yet optimized for most other video sites.
+  * Full support for YouTube and more support for other sites (Vimeo with `--format bestvideo` or similar, etc).
   * [Many features still planned](#features)!
 
 ### Getting Started
@@ -122,7 +122,7 @@ Determines the height of your image when using `--style stretch` only if you did
 **Default**: `135` *corresponds to 854x480 DASH at 24fps*  
 
 
-This command is currently best-suited to YouTube. To see possible formats for other sites, type `youtube-dl -F <URL>` or see [youtube-dl docs on format selection](https://github.com/rg3/youtube-dl/blob/master/README.md#format-selection); however, even when specifying a suitable format, the script might fail to run.  
+The default is currently best-suited to YouTube and will likely *not work* with other sites. To see possible formats for other sites, type `youtube-dl -F <URL>` or see [youtube-dl docs on format selection](https://github.com/rg3/youtube-dl/blob/master/README.md#format-selection). For example, with a Vimeo video, you might specify `--format bestvideo` or `--format worstvideo` and it should work. youtube-dl is sometimes picky, so it is not guaranteed!
 
 
 <br>

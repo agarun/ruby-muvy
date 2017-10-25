@@ -116,6 +116,5 @@ module Muvy
         #{options}
       MEDIA_ERROR
     end
-
   end
 end
